@@ -1,7 +1,7 @@
 Package: readODS
 Type: Package
 Title: Read ODS files and puts them into data frames
-Version: 1.2
+Version: 1.3
 Date: 2014-06-12
 Author: Gerrit-Jan Schutten
 Maintainer: Gerrit-Jan Schutten <phonixor@gmail.com>
@@ -11,7 +11,7 @@ Description: Read ODS (OpenDocument Spreadsheet) files and put them into data
 Depends: XML
 Suggests: testthat, devtools, roxygen2
 License: GPL-3
-Packaged: 2014-06-24 08:05:36 UTC; phonixor
+Packaged: 2014-07-03 11:28:31 UTC; phonixor
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2014-06-24 10:55:04
+Date/Publication: 2014-07-03 15:51:35
