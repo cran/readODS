@@ -22,4 +22,5 @@ supports lists of numbers!
 
 numberToLetters(1:1000)
 }
+\keyword{internal}
 

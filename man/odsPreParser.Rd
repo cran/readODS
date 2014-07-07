@@ -18,8 +18,22 @@ also to not make the code fulgy as all hell, the content.xml file is first scann
 <text:p>></text:p> --> <text:p>&gt</text:p>
 }
 \details{
-WTF!!! XML suddenly started being able to handle these files... or maybe just on windows?
-
 also returns an .ods root..
 }
+\keyword{WTF!!!}
+\keyword{XML}
+\keyword{able}
+\keyword{being}
+\keyword{files...}
+\keyword{handle}
+\keyword{internal}
+\keyword{just}
+\keyword{maybe}
+\keyword{on}
+\keyword{or}
+\keyword{started}
+\keyword{suddenly}
+\keyword{these}
+\keyword{to}
+\keyword{windows?}
 

@@ -23,4 +23,5 @@ AAA=703
 
 lettersToNumber("AAa")
 }
+\keyword{internal}
 

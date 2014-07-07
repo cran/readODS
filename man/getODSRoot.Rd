@@ -14,4 +14,5 @@ returns the XML root for the given .ods file
 \details{
 internal only!
 }
+\keyword{internal}
 
