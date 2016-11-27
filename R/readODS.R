@@ -86,7 +86,7 @@ check_cell_with_textp <- function(cell, ods_ns) {
 }
 
 parse_single_cell <- function(cell, ods_ns, formula_as_formula = FALSE, use_office_value = TRUE) {
-    cell_value <- xml_text(xml_find_all(cell, ".//text:p", ods_ns))
+    cell_value <- paste0(xml_text(xml_find_all(cell, ".//text:p", ods_ns)), collapse = "\n") ## handle multiline values, #23 
     if (cell_value == "" & use_office_value & xml_has_attr(cell, "office:value", ods_ns)) {
         cell_value <- xml_attr(cell, "office:value", ods_ns)
     }
@@ -206,20 +206,23 @@ select_range <- function(raw_sheet, range) {
 
 #' read data from ods files
 #' 
-#' @description 
-#' Funtion to read a single sheet from a ods file and return a data frame. 
-#' 
-#' @param path Path to the ods file.
+#' read_ods is a funtion to read a single sheet from a ods file and return a data frame.
+#' read.ods always return a list of data frames with one data frame per sheet. This is a wrapper to read_ods for backward compatibility with previous version of readODS. Please use read_ods if possible.
+#'
+#' @aliases read_ods read.ods
+#' @param path path to the ods file.
 #' @param sheet sheet to read. Either a string (the sheet name), or an integer sheet number. The default is 1.
 #' @param col_names indicating whether the file contains the names of the variables as its first line.
-#' @param col_types Either NULL to guess from the spreadsheet or a character vector containing "blank", "numeric", "date" or "text". NA will return a data frame with all columns being "text".
-#' @param na Missing value. By default readODS converts blank cells to missing data.
+#' @param col_types Either NULL to guess from the spreadsheet or refer to readr::type_convert to specify cols specification. NA will return a data frame with all columns being "characters".
+#' @param na Missing value. By default read_ods converts blank cells to missing data.
 #' @param skip the number of lines of the data file to skip before beginning to read data.
 #' @param formula_as_formula a switch to display formulas as formulas "SUM(A1:A3)" or as the resulting value "3"... or "8"..
 #' @param range selection of rectangle using Excel-like cell range, such as \code{range = "D12:F15"} or \code{range = "R1C12:R6C15"}. Cell range processing is handled by the \code{\link[=cellranger]{cellranger}} package.
+#' @param file for read.ods only, path to the ods file.
+#' @param formulaAsFormula for read.ods only, a switch to display formulas as formulas "SUM(A1:A3)" or as the resulting value "3"... or "8"..
 #' @return a data frame (\code{data.frame}) containing a representation of data in the ods file.
 #' @note Currently, ods files that linked to external data source cannot be read. Merged cells cannot be parsed correctly.
-#' @author Chung-hong Chan <chainsawtiney@gmail.com>
+#' @author Chung-hong Chan <chainsawtiney@gmail.com>, Gerrit-Jan Schutten <phonixor@gmail.com>
 #' @export
 read_ods <- function(path = NULL, sheet = 1, col_names = TRUE, col_types = NULL, na = "", skip = 0, formula_as_formula = FALSE, range = NULL) {
     res <- parse_ods_to_sheets(path)
@@ -230,8 +233,7 @@ read_ods <- function(path = NULL, sheet = 1, col_names = TRUE, col_types = NULL,
     parsed_df <- to_data_frame(cell_values = cell_values, header = col_names, na = na)
     if (is.null(col_types)) {
         raw_sheet <- readr::type_convert(df = parsed_df)
-    }
-    if (is.na(NA)) {
+    } else if (is.na(col_types)) {
         raw_sheet <- parsed_df
     } else {
         raw_sheet <- readr::type_convert(df = parsed_df, col_types = col_types)
@@ -244,18 +246,7 @@ read_ods <- function(path = NULL, sheet = 1, col_names = TRUE, col_types = NULL,
     return(res)
 }
 
-#' read data from ods files (depreciated)
-#' 
-#' @description 
-#' returns a list of data frames with one data frame per sheet. This is a wrapper to read_ods  for backward compatibile with previous version of readODS. Please use read_ods if possible.
-#' 
-#' @param file Path to the ods file.
-#' @param sheet default to NULL with all sheets being read as a list of data.frame. If a number is given, the sheet as a single data.frame is returned.
-#' @param formulaAsFormula Logical, a switch to display formulas as formulas "SUM(A1:A3)" or as the resulting value "3"... or "8".. 
-#' 
-#' @details 
-#' the data.frame contains all strings (not factors)
-#' @author Chung-hong Chan <chainsawtiney@gmail.com>, Gerrit-Jan Schutten <phonixor@gmail.com>
+#' @rdname read_ods
 #' @export
 read.ods <- function(file = NULL, sheet = NULL, formulaAsFormula = FALSE) {
     if (!is.null(sheet)) {
