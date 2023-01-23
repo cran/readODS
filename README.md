@@ -8,11 +8,11 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/readODS)](https://CRAN.R-project.org/package=readODS)
 [![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Travis build
-status](https://travis-ci.org/chainsawriot/readODS.svg?branch=master)](https://travis-ci.org/chainsawriot/readODS)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Codecov test
-coverage](https://codecov.io/gh/chainsawriot/readODS/branch/master/graph/badge.svg)](https://codecov.io/gh/chainsawriot/readODS?branch=master)
+coverage](https://codecov.io/gh/ropensci/readODS/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/readODS?branch=master)
+[![rOpenSci](https://badges.ropensci.org/302_status.svg)](https://github.com/ropensci/software-review/issues/386)
+[![R-CMD-check](https://github.com/ropensci/readODS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/readODS/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The only goal of readODS is to enable R to read and write OpenDocument
@@ -26,10 +26,16 @@ Install the latest stable version from CRAN:
 install.packages("readODS")
 ```
 
+from R-universe:
+
+``` r
+install.packages("readODS", repos = "https://ropensci.r-universe.dev")
+```
+
 Or install the development version from Github:
 
 ``` r
-devtools::install_github("chainsawriot/readODS")
+devtools::install_github("ropensci/readODS")
 ```
 
 ## Usage
@@ -59,28 +65,28 @@ Reading from the 2nd sheet
 
 ``` r
 read_ods("starwars.ods", sheet = 2)
-#>                  Name height mass    hair_color skin_color eye_color
-#> 1      Luke Skywalker    172   77         blond       fair      blue
-#> 2               C-3PO    202  136          none      white    yellow
-#> 3               R2-D2    150   49         brown      light     brown
-#> 4         Darth Vader    178  120   brown, grey      light      blue
-#> 5         Leia Organa    165   75         brown      light      blue
-#> 6           Owen Lars    183   84         black      light     brown
-#> 7  Beru Whitesun lars    182   77 auburn, white       fair blue-gray
-#> 8               R5-D4    188   84         blond       fair      blue
-#> 9   Biggs Darklighter    228  112         brown    unknown      blue
-#> 10     Obi-Wan Kenobi    180   80         brown       fair     brown
-#>    birth_year gender
-#> 1        19.0   male
-#> 2        41.9   male
-#> 3        19.0 female
-#> 4        52.0   male
-#> 5        47.0 female
-#> 6        24.0   male
-#> 7        57.0   male
-#> 8        41.9   male
-#> 9       200.0   male
-#> 10       29.0   male
+#>                  Name height mass    hair_color skin_color eye_color birth_year
+#> 1      Luke Skywalker    172   77         blond       fair      blue       19.0
+#> 2               C-3PO    202  136          none      white    yellow       41.9
+#> 3               R2-D2    150   49         brown      light     brown       19.0
+#> 4         Darth Vader    178  120   brown, grey      light      blue       52.0
+#> 5         Leia Organa    165   75         brown      light      blue       47.0
+#> 6           Owen Lars    183   84         black      light     brown       24.0
+#> 7  Beru Whitesun lars    182   77 auburn, white       fair blue-gray       57.0
+#> 8               R5-D4    188   84         blond       fair      blue       41.9
+#> 9   Biggs Darklighter    228  112         brown    unknown      blue      200.0
+#> 10     Obi-Wan Kenobi    180   80         brown       fair     brown       29.0
+#>    gender
+#> 1    male
+#> 2    male
+#> 3  female
+#> 4    male
+#> 5  female
+#> 6    male
+#> 7    male
+#> 8    male
+#> 9    male
+#> 10   male
 ```
 
 Reading from a specific range
@@ -166,6 +172,20 @@ read_ods("mtcars.ods", sheet = "plant", range = "A1:B10")
 #> 9   5.33  ctrl
 ```
 
+### About the speed and file size
+
+This package is written entirely in R. Although the efficiency has been
+improved, please don’t expect the heavily optimized performance of
+[readxl](https://readxl.tidyverse.org/),
+[readr](https://readr.tidyverse.org/) and data.table’s
+[fread](https://cran.r-project.org/package=data.table).
+
+Also, this package can’t handle ODS files larger than “medium size”. See
+[issue \#71](https://github.com/ropensci/readODS/issues/71). If you need
+to read large ODS files efficiently, the [headless interface of
+LibreOffice](https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters)
+is recommended to convert your ODS to CSV.
+
 ### Misc
 
 The logo of readODS is a remix of LibreOffice Calc v6.1 icon created by
@@ -179,7 +199,8 @@ Unported License](https://creativecommons.org/licenses/by-sa/3.0/).
 The creator of this package is Gerrit-Jan Schutten. The current
 maintainer is Chung-hong Chan. This package benefits from contributions
 by Thomas J. Leeper, John Foster, Sergio Oller, Jim Hester, Stephen
-Watts, Arthur Katossky, and Stas Malavin.
+Watts, Arthur Katossky, Stas Malavin, Duncan Garmonsway, Mehrad
+Mahmoudian, Matt Kerlogue, Detlef Steuer, and Michal Lauer.
 
 This package emulates the behaviors of `readxl::read_xlsx`,
 `writexl::write_xlsx` and `xlsx::write.xlsx`.
@@ -190,3 +211,17 @@ to care about file format anymore.
 ### License
 
 GPL3
+
+### Contributing
+
+Contributions in the form of feedback, comments, code, and bug report
+are welcome.
+
+  - Fork the source code, modify, and issue a [pull
+    request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
+  - Issues, bug reports: [File a Github
+    issue](https://github.com/ropensci/readODS).
+
+Please note that this package is released with a [Contributor Code of
+Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
+project, you agree to abide by its terms.

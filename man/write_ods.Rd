@@ -2,7 +2,7 @@
 % Please edit documentation in R/writeODS.R
 \name{write_ods}
 \alias{write_ods}
-\title{write data to ods file}
+\title{Write Data to ODS File}
 \usage{
 write_ods(
   x,
@@ -23,24 +23,32 @@ write_ods(
 
 \item{sheet}{Name of the sheet}
 
-\item{append}{logical, TRUE indicates that x should be appended to the existing file (path) as a new sheet. If a sheet with the same sheet_name exists, an exception is thrown. See update.}
+\item{append}{logical, TRUE indicates that x should be appended to the existing file (path) as a new sheet. If a sheet with the same sheet_name exists, an exception is thrown. See update. Please also note that writing is slower if TRUE. Default is FALSE.}
 
-\item{update}{logical, TRUE indicates that the sheet with sheet_name in the existing file (path) should be updated with the content of x. If a sheet with sheet_name does not exist, an exception is thrown.}
+\item{update}{logical, TRUE indicates that the sheet with sheet_name in the existing file (path) should be updated with the content of x. If a sheet with sheet_name does not exist, an exception is thrown. Please also note that writing is slower if TRUE. Default is FALSE.}
 
-\item{row_names}{logical, TRUE indicates that row names of x are to be included in the sheet}
+\item{row_names}{logical, TRUE indicates that row names of x are to be included in the sheet. Default is FALSE.}
 
-\item{col_names}{logical, TRUE indicates that column names of x are to be included in the sheet}
+\item{col_names}{logical, TRUE indicates that column names of x are to be included in the sheet. Default is FALSE.}
 
-\item{verbose}{logical, if messages should be displayed}
+\item{verbose}{logical, if messages should be displayed. Default is FALSE.}
 
-\item{overwrite}{logical, depreciated.}
+\item{overwrite}{logical, deprecated.}
 }
 \value{
-the value of \code{path} invisibly.
+An ODS file written to the file path location specified by the user. The value of \code{path} is also returned invisibly.
 }
 \description{
 Function to write a single data.frame to an ods file.
 }
+\examples{
+\dontrun{
+# preserve the row names
+write_ods(mtcars, "mtcars.ods", row_names = TRUE)
+# append a sheet to an existing file
+write_ods(PlantGrowth, "mtcars.ods", append = TRUE, sheet = "plant")
+}
+}
 \author{
-Thomas J. Leeper \href{mailto:thosjleeper@gmail.com}{thosjleeper@gmail.com}, John Foster \href{mailto:john.x.foster@nab.com.au}{john.x.foster@nab.com.au}, Chung-hong Chan \href{mailto:chainsawtiney@gmail.com}{chainsawtiney@gmail.com}
+Detlef Steuer \href{mailto:steuer@hsu-hh.de}{steuer@hsu-hh.de}, Thomas J. Leeper \href{mailto:thosjleeper@gmail.com}{thosjleeper@gmail.com}, John Foster \href{mailto:john.x.foster@nab.com.au}{john.x.foster@nab.com.au}, Chung-hong Chan \href{mailto:chainsawtiney@gmail.com}{chainsawtiney@gmail.com}
 }

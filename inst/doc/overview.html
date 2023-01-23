@@ -13,7 +13,7 @@
 <meta name="author" content="Chung-hong Chan " />
 
 
-<title>An overview of readODS</title>
+<title>An Overview of readODS</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -45,8 +45,25 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
-<style type="text/css">code{white-space: pre;}</style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -133,6 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -328,184 +346,190 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">An overview of readODS</h1>
+<h1 class="title toc-ignore">An Overview of readODS</h1>
 <h4 class="author">Chung-hong Chan <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></h4>
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(readODS)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(readODS)</span></code></pre></div>
 <p>You probably only need to use two functions from this package: <code>read_ods</code> and <code>write_ods</code>.</p>
-<p>Write the data PlantGrowth as a new file <code>plant.ods</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">write_ods</span>(PlantGrowth, <span class="st">&quot;plant.ods&quot;</span>)</span></code></pre></div>
+<p>Write the data PlantGrowth (from the built-in <code>datasets</code> package) as a new file <code>plant.ods</code> in the current working directory of the user’s session.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">write_ods</span>(PlantGrowth, <span class="st">&quot;plant.ods&quot;</span>)</span></code></pre></div>
 <p>You can then read it back from <code>plant.ods</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;    weight group</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; 1    4.17  ctrl</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 2    5.58  ctrl</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; 3    5.18  ctrl</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 4    6.11  ctrl</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 5    4.50  ctrl</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 6    4.61  ctrl</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 7    5.17  ctrl</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 8    4.53  ctrl</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; 9    5.33  ctrl</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; 10   5.14  ctrl</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; 11   4.81  trt1</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 12   4.17  trt1</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; 13   4.41  trt1</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 14   3.59  trt1</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 15   5.87  trt1</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; 16   3.83  trt1</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 17   6.03  trt1</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; 18   4.89  trt1</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; 19   4.32  trt1</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; 20   4.69  trt1</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; 21   6.31  trt2</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; 22   5.12  trt2</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; 23   5.54  trt2</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; 24   5.50  trt2</span></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; 25   5.37  trt2</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; 26   5.29  trt2</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; 27   4.92  trt2</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; 28   6.15  trt2</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; 29   5.80  trt2</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; 30   5.26  trt2</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">#&gt; 1    4.17  ctrl</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">#&gt; 2    5.58  ctrl</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt; 3    5.18  ctrl</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt; 4    6.11  ctrl</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co">#&gt; 5    4.50  ctrl</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="co">#&gt; 6    4.61  ctrl</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="co">#&gt; 7    5.17  ctrl</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="co">#&gt; 8    4.53  ctrl</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">#&gt; 9    5.33  ctrl</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="co">#&gt; 10   5.14  ctrl</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="co">#&gt; 11   4.81  trt1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">#&gt; 12   4.17  trt1</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">#&gt; 13   4.41  trt1</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">#&gt; 14   3.59  trt1</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co">#&gt; 15   5.87  trt1</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">#&gt; 16   3.83  trt1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">#&gt; 17   6.03  trt1</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">#&gt; 18   4.89  trt1</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">#&gt; 19   4.32  trt1</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">#&gt; 20   4.69  trt1</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">#&gt; 21   6.31  trt2</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">#&gt; 22   5.12  trt2</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="co">#&gt; 23   5.54  trt2</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="co">#&gt; 24   5.50  trt2</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">#&gt; 25   5.37  trt2</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="co">#&gt; 26   5.29  trt2</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="co">#&gt; 27   4.92  trt2</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="co">#&gt; 28   6.15  trt2</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="co">#&gt; 29   5.80  trt2</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="co">#&gt; 30   5.26  trt2</span></span></code></pre></div>
 <div id="update-and-append" class="section level2">
 <h2>Update and Append</h2>
 <p>You can append another sheet into an existing ods file with the sheet name being “mtcars_ods”.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">write_ods</span>(mtcars, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">write_ods</span>(mtcars, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Read from a specific sheet. Notice row names are missing.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt; 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt; 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt; 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt; 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#&gt; 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#&gt; 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="co">#&gt; 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="co">#&gt; 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="co">#&gt; 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="co">#&gt; 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co">#&gt; 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="co">#&gt; 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="co">#&gt; 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="co">#&gt; 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="co">#&gt; 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co">#&gt; 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt; 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="co">#&gt; 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt; 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a><span class="co">#&gt; 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co">#&gt; 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">#&gt; 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="co">#&gt; 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a><span class="co">#&gt; 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="co">#&gt; 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co">#&gt; 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a><span class="co">#&gt; 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="co">#&gt; 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">#&gt; 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co">#&gt; 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a><span class="co">#&gt; 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co">#&gt; 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co">#&gt; 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a><span class="co">#&gt; 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="co">#&gt; 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a><span class="co">#&gt; 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">#&gt; 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a><span class="co">#&gt; 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a><span class="co">#&gt; 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a><span class="co">#&gt; 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a><span class="co">#&gt; 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a><span class="co">#&gt; 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a><span class="co">#&gt; 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a><span class="co">#&gt; 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a><span class="co">#&gt; 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></span></code></pre></div>
 <p>You can also integer for <code>sheet</code>, e.g. 2 for the second sheet.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="dv">2</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt; 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt; 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="co">#&gt; 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a><span class="co">#&gt; 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="co">#&gt; 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a><span class="co">#&gt; 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a><span class="co">#&gt; 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></span>
-<span id="cb6-32"><a href="#cb6-32"></a><span class="co">#&gt; 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a><span class="co">#&gt; 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a><span class="co">#&gt; 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="dv">2</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">#&gt;     mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co">#&gt; 1  21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co">#&gt; 2  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">#&gt; 3  22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co">#&gt; 4  21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">#&gt; 5  18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">#&gt; 6  18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a><span class="co">#&gt; 7  14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co">#&gt; 8  24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">#&gt; 9  22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co">#&gt; 10 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="co">#&gt; 11 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">#&gt; 12 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a><span class="co">#&gt; 13 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a><span class="co">#&gt; 14 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a><span class="co">#&gt; 15 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a><span class="co">#&gt; 16 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a><span class="co">#&gt; 17 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a><span class="co">#&gt; 18 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a><span class="co">#&gt; 19 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a><span class="co">#&gt; 20 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a><span class="co">#&gt; 21 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a><span class="co">#&gt; 22 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a><span class="co">#&gt; 23 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a><span class="co">#&gt; 24 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a><span class="co">#&gt; 25 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a><span class="co">#&gt; 26 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a><span class="co">#&gt; 27 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a><span class="co">#&gt; 28 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a><span class="co">#&gt; 29 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a><span class="co">#&gt; 30 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a><span class="co">#&gt; 31 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a><span class="co">#&gt; 32 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></span></code></pre></div>
 <p>Update an existing sheet and preserve row names</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">write_ods</span>(mtcars, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>, <span class="dt">row_names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">write_ods</span>(mtcars, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>, <span class="dt">row_names =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>Notice the information from the sheet <code>mtcars_ods</code> is updated.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; Warning: Missing column names filled in: &#39;X1&#39; [1]</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt;                     NA  mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; 1            Mazda RX4 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt; 2        Mazda RX4 Wag 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; 3           Datsun 710 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; 4       Hornet 4 Drive 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 5    Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt; 6              Valiant 18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt; 7           Duster 360 14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt; 8            Merc 240D 24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt; 9             Merc 230 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt; 10            Merc 280 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; 11           Merc 280C 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="co">#&gt; 12          Merc 450SE 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co">#&gt; 13          Merc 450SL 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co">#&gt; 14         Merc 450SLC 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="co">#&gt; 15  Cadillac Fleetwood 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="co">#&gt; 16 Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="co">#&gt; 17   Chrysler Imperial 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co">#&gt; 18            Fiat 128 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="co">#&gt; 19         Honda Civic 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="co">#&gt; 20      Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="co">#&gt; 21       Toyota Corona 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></span>
-<span id="cb8-25"><a href="#cb8-25"></a><span class="co">#&gt; 22    Dodge Challenger 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="co">#&gt; 23         AMC Javelin 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></span>
-<span id="cb8-27"><a href="#cb8-27"></a><span class="co">#&gt; 24          Camaro Z28 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></span>
-<span id="cb8-28"><a href="#cb8-28"></a><span class="co">#&gt; 25    Pontiac Firebird 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="co">#&gt; 26           Fiat X1-9 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="co">#&gt; 27       Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="co">#&gt; 28        Lotus Europa 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a><span class="co">#&gt; 29      Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></span>
-<span id="cb8-33"><a href="#cb8-33"></a><span class="co">#&gt; 30        Ferrari Dino 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></span>
-<span id="cb8-34"><a href="#cb8-34"></a><span class="co">#&gt; 31       Maserati Bora 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></span>
-<span id="cb8-35"><a href="#cb8-35"></a><span class="co">#&gt; 32          Volvo 142E 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co">#&gt; Warning: Missing column names filled in: &#39;X1&#39; [1]</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">#&gt;                     NA  mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co">#&gt; 1            Mazda RX4 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">#&gt; 2        Mazda RX4 Wag 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">#&gt; 3           Datsun 710 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">#&gt; 4       Hornet 4 Drive 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">#&gt; 5    Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="co">#&gt; 6              Valiant 18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="co">#&gt; 7           Duster 360 14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt; 8            Merc 240D 24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co">#&gt; 9             Merc 230 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a><span class="co">#&gt; 10            Merc 280 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a><span class="co">#&gt; 11           Merc 280C 17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a><span class="co">#&gt; 12          Merc 450SE 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a><span class="co">#&gt; 13          Merc 450SL 17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a><span class="co">#&gt; 14         Merc 450SLC 15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a><span class="co">#&gt; 15  Cadillac Fleetwood 10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a><span class="co">#&gt; 16 Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a><span class="co">#&gt; 17   Chrysler Imperial 14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a><span class="co">#&gt; 18            Fiat 128 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a><span class="co">#&gt; 19         Honda Civic 30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true"></a><span class="co">#&gt; 20      Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true"></a><span class="co">#&gt; 21       Toyota Corona 21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true"></a><span class="co">#&gt; 22    Dodge Challenger 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true"></a><span class="co">#&gt; 23         AMC Javelin 15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true"></a><span class="co">#&gt; 24          Camaro Z28 13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true"></a><span class="co">#&gt; 25    Pontiac Firebird 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true"></a><span class="co">#&gt; 26           Fiat X1-9 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true"></a><span class="co">#&gt; 27       Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true"></a><span class="co">#&gt; 28        Lotus Europa 30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true"></a><span class="co">#&gt; 29      Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true"></a><span class="co">#&gt; 30        Ferrari Dino 19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true"></a><span class="co">#&gt; 31       Maserati Bora 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true"></a><span class="co">#&gt; 32          Volvo 142E 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span></span></code></pre></div>
 <p>Read from a specific range</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;A1:C10&quot;</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; Warning: Missing column names filled in: &#39;X1&#39; [1]</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;                  NA  mpg cyl</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; 1         Mazda RX4 21.0   6</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; 2     Mazda RX4 Wag 21.0   6</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; 3        Datsun 710 22.8   4</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; 4    Hornet 4 Drive 21.4   6</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; 5 Hornet Sportabout 18.7   8</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; 6           Valiant 18.1   6</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; 7        Duster 360 14.3   8</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; 8         Merc 240D 24.4   4</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; 9          Merc 230 22.8   4</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;A1:C10&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">#&gt; Warning: Missing column names filled in: &#39;X1&#39; [1]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">#&gt;                  NA  mpg cyl</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">#&gt; 1         Mazda RX4 21.0   6</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co">#&gt; 2     Mazda RX4 Wag 21.0   6</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a><span class="co">#&gt; 3        Datsun 710 22.8   4</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">#&gt; 4    Hornet 4 Drive 21.4   6</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">#&gt; 5 Hornet Sportabout 18.7   8</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="co">#&gt; 6           Valiant 18.1   6</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a><span class="co">#&gt; 7        Duster 360 14.3   8</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a><span class="co">#&gt; 8         Merc 240D 24.4   4</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co">#&gt; 9          Merc 230 22.8   4</span></span></code></pre></div>
 <p>You cannot append to an existing sheet.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">write_ods</span>(iris, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; Error in tryCatchList(expr, classes, parentenv, handlers): Sheet mtcars_ods exists. Set update to TRUE is you want to update this sheet.</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">write_ods</span>(iris, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;mtcars_ods&quot;</span>, <span class="dt">append =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">#&gt; Error: Sheet mtcars_ods exists. Set update to TRUE is you want to update this sheet.</span></span></code></pre></div>
 <p>You cannot update a missing sheet.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">write_ods</span>(iris, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;iris&quot;</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; Error in tryCatchList(expr, classes, parentenv, handlers): Sheet iris does not exist. Cannot update.</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">write_ods</span>(iris, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;iris&quot;</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co">#&gt; Error: Sheet iris does not exist. Cannot update.</span></span></code></pre></div>
+</div>
+<div id="misc." class="section level2">
+<h2>Misc.</h2>
+<p>Use the function <code>list_ods_sheets()</code> to list out all sheets in an ODS file.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Sheet1&quot;     &quot;mtcars_ods&quot;</span></span></code></pre></div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>University of Mannheim<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>GESIS Leibniz-Institut für Sozialwissenschaften<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

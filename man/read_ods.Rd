@@ -3,10 +3,10 @@
 \name{read_ods}
 \alias{read_ods}
 \alias{read.ods}
-\title{read data from ods files}
+\title{Read Data From ODS File}
 \usage{
 read_ods(
-  path = NULL,
+  path,
   sheet = 1,
   col_names = TRUE,
   col_types = NULL,
@@ -16,6 +16,7 @@ read_ods(
   range = NULL,
   row_names = FALSE,
   strings_as_factors = FALSE,
+  check_names = FALSE,
   verbose = FALSE
 )
 
@@ -26,23 +27,26 @@ read.ods(file = NULL, sheet = NULL, formulaAsFormula = FALSE)
 
 \item{sheet}{sheet to read. Either a string (the sheet name), or an integer sheet number. The default is 1.}
 
-\item{col_names}{indicating whether the file contains the names of the variables as its first line.}
+\item{col_names}{logical, indicating whether the file contains the names of the variables as its first line. Default is TRUE.}
 
-\item{col_types}{Either NULL to guess from the spreadsheet or refer to readr::type_convert to specify cols specification. NA will return a data frame with all columns being "characters".}
+\item{col_types}{Either NULL to guess from the spreadsheet or refer to \code{\link[readr:type_convert]{readr::type_convert()}} to specify cols specification. NA will return a data frame with all columns being "characters".}
 
-\item{na}{Character vector of strings to use for missing values. By default read_ods converts blank cells to missing data.}
+\item{na}{Character vector of strings to use for missing values. By default read_ods converts blank cells to missing data. It can also be set to
+NULL, so that empty cells are treated as NA.}
 
-\item{skip}{the number of lines of the data file to skip before beginning to read data.}
+\item{skip}{the number of lines of the data file to skip before beginning to read data. If this parameter is larger than the total number of lines in the ods file, an empty data frame is returned.}
 
-\item{formula_as_formula}{a switch to display formulas as formulas "SUM(A1:A3)" or as the resulting value "3"... or "8"..}
+\item{formula_as_formula}{logical, a switch to display formulas as formulas "SUM(A1:A3)" or as the resulting value "3"... or "8".. . Default is FALSE.}
 
 \item{range}{selection of rectangle using Excel-like cell range, such as \code{range = "D12:F15"} or \code{range = "R1C12:R6C15"}. Cell range processing is handled by the \code{\link[=cellranger]{cellranger}} package.}
 
-\item{row_names}{indicating whether the file contains the names of the rows as its first column}
+\item{row_names}{logical, indicating whether the file contains the names of the rows as its first column. Default is FALSE.}
 
-\item{strings_as_factors}{logical, if character columns to be converted to factors.}
+\item{strings_as_factors}{logical, if character columns to be converted to factors. Default is FALSE.}
 
-\item{verbose}{logical, if messages should be displayed.}
+\item{check_names}{logical, passed down to base::data.frame(). Default is FALSE.}
+
+\item{verbose}{logical, if messages should be displayed. Default is FALSE.}
 
 \item{file}{for read.ods only, path to the ods file.}
 
@@ -57,6 +61,16 @@ read.ods always returns a list of data frames with one data frame per sheet. Thi
 }
 \note{
 Currently, ods files that linked to external data source cannot be read. Merged cells cannot be parsed correctly.
+}
+\examples{
+\dontrun{
+# Read a file
+read_ods("starwars.ods")
+# Read a specific sheet, e.g. the 2nd sheet
+read_ods("starwars.ods", sheet = 2)
+# Read a specific range, e.g. A1:C11
+read_ods("starwars.ods", sheet = 2, range = "A1:C11")
+}
 }
 \author{
 Chung-hong Chan \href{mailto:chainsawtiney@gmail.com}{chainsawtiney@gmail.com}, Gerrit-Jan Schutten \href{mailto:phonixor@gmail.com}{phonixor@gmail.com}

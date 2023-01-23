@@ -37,6 +37,9 @@ write_ods(iris, "plant.ods", sheet = "mtcars_ods", append = TRUE)
 ## ----update_error, error = TRUE-----------------------------------------------
 write_ods(iris, "plant.ods", sheet = "iris", update = TRUE)
 
+## ---- list_ods_sheets---------------------------------------------------------
+list_ods_sheets("plant.ods")
+
 ## ---- echo = FALSE, message = FALSE-------------------------------------------
 unlink("plant.ods")
 
