@@ -37,8 +37,45 @@ write_ods(iris, "plant.ods", sheet = "mtcars_ods", append = TRUE)
 ## ----update_error, error = TRUE-----------------------------------------------
 write_ods(iris, "plant.ods", sheet = "iris", update = TRUE)
 
+## ----read fods, eval = file.exists("plant.fods")------------------------------
+#  read_fods("plant.fods")
+
 ## ---- list_ods_sheets---------------------------------------------------------
 list_ods_sheets("plant.ods")
+
+## ---- empty1------------------------------------------------------------------
+PlantGrowth2 <- tibble::as_tibble(PlantGrowth)
+PlantGrowth2[1,1] <- NA
+PlantGrowth2$group <- as.character(PlantGrowth2$group)
+
+## NA is preseved; weight is still <dbl>
+read_ods(write_ods(PlantGrowth2))
+
+## ---- empty2------------------------------------------------------------------
+## NA is preseved; but weight is now <chr>
+read_ods(write_ods(PlantGrowth2, na_as_string = TRUE))
+
+## ---- empty3------------------------------------------------------------------
+## NA is preseved; but weight is now <chr>
+read_ods(write_ods(PlantGrowth2, na_as_string = TRUE),
+         col_types = readr::cols(weight = readr::col_double()))
+
+## ---- list_ods_sheets20-------------------------------------------------------
+## ods_sheets("plant.ods")
+list_ods_sheets("plant.ods")
+
+## ---- getnum20----------------------------------------------------------------
+##get_num_sheets_in_ods("plant.ods")
+length(list_ods_sheets("plant.ods"))
+
+## ---- readdotods17------------------------------------------------------------
+## read.ods from 1.6 to 1.8
+read_ods("plant.ods", col_names = FALSE, skip = 0, na = NULL, col_types = NA, as_tibble = FALSE)
+
+## ---- readotods16-------------------------------------------------------------
+## read.ods older than 1.6
+lapply(list_ods_sheets("plant.ods"),
+       function(x) read_ods(path = "plant.ods", sheet = x, col_names = FALSE, skip = 0, na = NULL, col_types = NA, as_tibble = FALSE))
 
 ## ---- echo = FALSE, message = FALSE-------------------------------------------
 unlink("plant.ods")

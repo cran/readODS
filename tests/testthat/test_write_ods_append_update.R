@@ -7,7 +7,7 @@ cols_to_letters <- function(n) {
     stopifnot(n <= 26)
     
     seq <- seq_len(n)
-    sapply(seq, function(n) LETTERS[n])
+    vapply(seq, function(n) LETTERS[n], character(1))
 }
 
 setup({
@@ -39,35 +39,49 @@ test_that("Write Excel sheets", {
     expect_error(write_ods(starwars10, tmp, "SWRC", row_names=TRUE, col_names = TRUE, update = TRUE), NA)
     expect_error(write_ods(starwars10, tmp, "whatevernotexists", row_names=TRUE, col_names = TRUE, update = TRUE))
 
-    df <- read_ods(tmp, "SW", row_names = FALSE, col_names = FALSE, strings_as_factors = TRUE)
-    expect_true(all.equal({
+    df <- read_ods(tmp, "SW", row_names = FALSE, col_names = FALSE, strings_as_factors = TRUE, as_tibble = FALSE)
+     expect_true(all.equal({
         cars <- starwars10
         rownames(cars) <- NULL
-        colnames(cars) <- cols_to_letters(ncol(cars))
+        colnames(cars) <- vctrs::vec_as_names(rep("", 9), repair = "unique")
         cars
     }, df))
 
-    df <- read_ods(tmp, "SWR", row_names = TRUE, col_names = FALSE, strings_as_factors = TRUE)
+    df <- read_ods(tmp, "SWR", row_names = TRUE, col_names = FALSE, strings_as_factors = TRUE, as_tibble = FALSE)
     expect_true(all.equal({
         cars <- starwars10
-        colnames(cars) <- cols_to_letters(ncol(cars))
+        colnames(cars) <- vctrs::vec_as_names(rep("", 9), repair = "unique")
         cars}, df))
 
-    df <- read_ods(tmp, "SWC", row_names = FALSE, col_names = TRUE, strings_as_factors = TRUE)
+    df <- read_ods(tmp, "SWC", row_names = FALSE, col_names = TRUE, strings_as_factors = TRUE, as_tibble = FALSE)
     expect_true(all.equal({
         cars <- starwars10
         rownames(cars) <- NULL
         cars
     }, df))
 
-    df <- read_ods(tmp, "SWRC", row_names = TRUE, col_names = TRUE, strings_as_factors = TRUE)
+    df <- read_ods(tmp, "SWRC", row_names = TRUE, col_names = TRUE, strings_as_factors = TRUE, as_tibble = FALSE)
     expect_true(all.equal(starwars10, df))
 
-    df <- read_ods(tmp, "SW1", row_names = TRUE, col_names = TRUE, strings_as_factors = TRUE)
+    df <- read_ods(tmp, "SW1", row_names = TRUE, col_names = TRUE, strings_as_factors = TRUE, as_tibble = FALSE)
 
     expect_false(isTRUE(all.equal(starwars10[1, seq_len(ncol(starwars10))], df))) # factor mismatch
     expect_true(all((df == starwars10[1, seq_len(ncol(starwars10))])[1,]))
 
-    df <- read_ods(tmp, "SW10", row_names = TRUE, col_names = TRUE, strings_as_factors = TRUE)
+    df <- read_ods(tmp, "SW10", row_names = TRUE, col_names = TRUE, strings_as_factors = TRUE, as_tibble = FALSE)
     expect_true(all.equal(starwars10[seq_len(nrow(starwars10)), 1, drop=FALSE], df))
+})
+
+test_that("issue 107", {
+    legend <- readRDS("../testdata/legend.rds")
+    expect_error(write_ods(legend, tmp, sheet = "Legend"), NA)
+    expect_error(write_ods(legend, tmp, sheet = "Legend", update = TRUE), NA)
+    expect_error(write_ods(legend, tmp, sheet = "Legend2", append = TRUE), NA)
+})
+
+test_that("reading and writing and reading gets the same result as the start", {
+    a <- read_ods("../testdata/starwars.ods")
+    b <- write_ods(a, tmp)
+    d <- read_ods(tmp)
+    expect_equal(a,d)
 })

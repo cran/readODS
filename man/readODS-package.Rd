@@ -22,8 +22,9 @@ Useful links:
 Authors:
 \itemize{
   \item Gerrit-Jan Schutten \email{phonixor@gmail.com}
-  \item Thomas J. Leeper \email{thosjleeper@gmail.com} (\href{https://orcid.org/0000-0003-4097-6326}{ORCID})
+  \item Peter Brohan \email{peter.brohan@gmail.com}
   \item Detlef Steuer \email{steuer@hsu-hh.de} (\href{https://orcid.org/0000-0003-2676-5290}{ORCID})
+  \item Thomas J. Leeper \email{thosjleeper@gmail.com} (\href{https://orcid.org/0000-0003-4097-6326}{ORCID})
 }
 
 Other contributors:
@@ -38,6 +39,8 @@ Other contributors:
   \item Mehrad Mahmoudian [contributor]
   \item Matt Kerlogue [contributor]
   \item Michal Lauer \email{michal.lauer.25@gmail.com} [contributor]
+  \item Till Straube \email{straube@geo.uni-frankfurt.de} [contributor]
+  \item Marcin Kalicinski (Author of included RapidXML code) [contributor, copyright holder]
 }
 
 }
