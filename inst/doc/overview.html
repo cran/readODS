@@ -457,242 +457,264 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">write_ods</span>(iris, <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;iris&quot;</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="co">#&gt; Error: Sheet iris does not exist. Cannot update.</span></span></code></pre></div>
 </div>
+<div id="writing-multiple-sheets-simultaneously" class="section level2">
+<h2>Writing multiple sheets simultaneously</h2>
+<p>It is much faster to write data frames into the same file by putting them in a (named) list.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">write_ods</span>(<span class="kw">list</span>(<span class="st">&quot;iris&quot;</span> =<span class="st"> </span>iris, <span class="st">&quot;plant&quot;</span> =<span class="st"> </span>PlantGrowth), <span class="st">&quot;plant_multi.ods&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant_multi.ods&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;plant&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a><span class="co">#&gt;  1   4.17 ctrl </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co">#&gt;  2   5.58 ctrl </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a><span class="co">#&gt;  3   5.18 ctrl </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co">#&gt;  4   6.11 ctrl </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a><span class="co">#&gt;  5   4.5  ctrl </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a><span class="co">#&gt;  6   4.61 ctrl </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co">#&gt;  7   5.17 ctrl </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a><span class="co">#&gt;  8   4.53 ctrl </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a><span class="co">#&gt;  9   5.33 ctrl </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co">#&gt; 10   5.14 ctrl </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
+</div>
 <div id="flat-ods-files-.xml-or-.fods" class="section level2">
 <h2>Flat ODS files (<code>.xml</code> or <code>.fods</code>)</h2>
-<p>Can be read (but not written) with <code>read_fods()</code> (note that the same function is used to read flat files, no matter the extension). This has the same behaviour and arguments as <code>read_ods()</code></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">read_fods</span>(<span class="st">&quot;plant.fods&quot;</span>)</span></code></pre></div>
+<p>Can be read with <code>read_fods()</code> (note that the same function is used to read flat files, no matter the extension). This has the same behaviour and arguments as <code>read_ods()</code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">read_fods</span>(<span class="st">&quot;plant.fods&quot;</span>)</span></code></pre></div>
+<p><code>write_fods()</code> can be used to write Flat ODS files</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">write_fods</span>(PlantGrowth, <span class="st">&quot;plant.fods&quot;</span>)</span></code></pre></div>
 </div>
 <div id="misc." class="section level2">
 <h2>Misc.</h2>
 <p>Use the function <code>list_ods_sheets()</code> or <code>list_fods_sheets()</code> to list out all sheets in an (F)ODS file.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Sheet1&quot;     &quot;mtcars_ods&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Sheet1&quot;     &quot;mtcars_ods&quot;</span></span></code></pre></div>
 </div>
 <div id="readods-2.0.0" class="section level2">
 <h2>readODS 2.0.0</h2>
 <p>Starting from 2.0.0, <code>write_ods</code> writes <code>NA</code> as empty by default.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>PlantGrowth2 &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>(PlantGrowth)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>PlantGrowth2[<span class="dv">1</span>,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>PlantGrowth2<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">as.character</span>(PlantGrowth2<span class="op">$</span>group)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="co">## NA is preseved; weight is still &lt;dbl&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="kw">write_ods</span>(PlantGrowth2))</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a><span class="co">#&gt;  1  NA    ctrl </span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a><span class="co">#&gt;  2   5.58 ctrl </span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true"></a><span class="co">#&gt;  3   5.18 ctrl </span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true"></a><span class="co">#&gt;  4   6.11 ctrl </span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true"></a><span class="co">#&gt;  5   4.5  ctrl </span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true"></a><span class="co">#&gt;  6   4.61 ctrl </span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true"></a><span class="co">#&gt;  7   5.17 ctrl </span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true"></a><span class="co">#&gt;  8   4.53 ctrl </span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true"></a><span class="co">#&gt;  9   5.33 ctrl </span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true"></a><span class="co">#&gt; 10   5.14 ctrl </span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>PlantGrowth2 &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>(PlantGrowth)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a>PlantGrowth2[<span class="dv">1</span>,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>PlantGrowth2<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">as.character</span>(PlantGrowth2<span class="op">$</span>group)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="co">## NA is preseved; weight is still &lt;dbl&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="kw">write_ods</span>(PlantGrowth2))</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a><span class="co">#&gt;  1  NA    ctrl </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a><span class="co">#&gt;  2   5.58 ctrl </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a><span class="co">#&gt;  3   5.18 ctrl </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a><span class="co">#&gt;  4   6.11 ctrl </span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a><span class="co">#&gt;  5   4.5  ctrl </span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a><span class="co">#&gt;  6   4.61 ctrl </span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true"></a><span class="co">#&gt;  7   5.17 ctrl </span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true"></a><span class="co">#&gt;  8   4.53 ctrl </span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true"></a><span class="co">#&gt;  9   5.33 ctrl </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true"></a><span class="co">#&gt; 10   5.14 ctrl </span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
 <p>If you want <code>NA</code> to be written literally as the string “NA”, use <code>na_as_string</code>. You should literally see the string “NA” when the file is opened with LibreOffice, for example.</p>
 <p>But the string “NA” messes up the automatic type inference of <code>read_ods</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="co">## NA is preseved; but weight is now &lt;chr&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="kw">write_ods</span>(PlantGrowth2, <span class="dt">na_as_string =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a><span class="co">#&gt;  1 NA     ctrl </span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="co">#&gt;  2 5.58   ctrl </span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="co">#&gt;  3 5.18   ctrl </span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a><span class="co">#&gt;  4 6.11   ctrl </span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true"></a><span class="co">#&gt;  5 4.5    ctrl </span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true"></a><span class="co">#&gt;  6 4.61   ctrl </span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true"></a><span class="co">#&gt;  7 5.17   ctrl </span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true"></a><span class="co">#&gt;  8 4.53   ctrl </span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true"></a><span class="co">#&gt;  9 5.33   ctrl </span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true"></a><span class="co">#&gt; 10 5.14   ctrl </span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="co">## NA is preseved; but weight is now &lt;chr&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="kw">write_ods</span>(PlantGrowth2, <span class="dt">na_as_string =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a><span class="co">#&gt;  1 NA     ctrl </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a><span class="co">#&gt;  2 5.58   ctrl </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true"></a><span class="co">#&gt;  3 5.18   ctrl </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true"></a><span class="co">#&gt;  4 6.11   ctrl </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true"></a><span class="co">#&gt;  5 4.5    ctrl </span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true"></a><span class="co">#&gt;  6 4.61   ctrl </span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true"></a><span class="co">#&gt;  7 5.17   ctrl </span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true"></a><span class="co">#&gt;  8 4.53   ctrl </span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true"></a><span class="co">#&gt;  9 5.33   ctrl </span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true"></a><span class="co">#&gt; 10 5.14   ctrl </span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
 <p>Of course you can fix this by specifying <code>col_types</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="co">## NA is preseved; but weight is now &lt;chr&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="kw">write_ods</span>(PlantGrowth2, <span class="dt">na_as_string =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>         <span class="dt">col_types =</span> readr<span class="op">::</span><span class="kw">cols</span>(<span class="dt">weight =</span> readr<span class="op">::</span><span class="kw">col_double</span>()))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="co">#&gt; Warning: [0, 1]: expected a double, but got &#39;NA&#39;</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a><span class="co">#&gt;  1  NA    ctrl </span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a><span class="co">#&gt;  2   5.58 ctrl </span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a><span class="co">#&gt;  3   5.18 ctrl </span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a><span class="co">#&gt;  4   6.11 ctrl </span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true"></a><span class="co">#&gt;  5   4.5  ctrl </span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true"></a><span class="co">#&gt;  6   4.61 ctrl </span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true"></a><span class="co">#&gt;  7   5.17 ctrl </span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true"></a><span class="co">#&gt;  8   4.53 ctrl </span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true"></a><span class="co">#&gt;  9   5.33 ctrl </span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true"></a><span class="co">#&gt; 10   5.14 ctrl </span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co">## NA is preseved; but weight is now &lt;chr&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="kw">write_ods</span>(PlantGrowth2, <span class="dt">na_as_string =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>         <span class="dt">col_types =</span> readr<span class="op">::</span><span class="kw">cols</span>(<span class="dt">weight =</span> readr<span class="op">::</span><span class="kw">col_double</span>()))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a><span class="co">#&gt; Warning: [0, 1]: expected a double, but got &#39;NA&#39;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a><span class="co">#&gt; # A tibble: 30 × 2</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a><span class="co">#&gt;    weight group</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a><span class="co">#&gt;  1  NA    ctrl </span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a><span class="co">#&gt;  2   5.58 ctrl </span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a><span class="co">#&gt;  3   5.18 ctrl </span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a><span class="co">#&gt;  4   6.11 ctrl </span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a><span class="co">#&gt;  5   4.5  ctrl </span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a><span class="co">#&gt;  6   4.61 ctrl </span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a><span class="co">#&gt;  7   5.17 ctrl </span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a><span class="co">#&gt;  8   4.53 ctrl </span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a><span class="co">#&gt;  9   5.33 ctrl </span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a><span class="co">#&gt; 10   5.14 ctrl </span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true"></a><span class="co">#&gt; # ℹ 20 more rows</span></span></code></pre></div>
 <p>Several functions were removed in readODS 2.0.0. Please consider the API of <code>readODS</code> mature and there should not be any breaking change until readODS 3.0.0.</p>
 <div id="ods_sheets" class="section level3">
 <h3><code>ods_sheets</code></h3>
 <p>Please use <code>list_ods_sheets(path = &quot;plant.ods&quot;)</code> instead.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="co">## ods_sheets(&quot;plant.ods&quot;)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Sheet1&quot;     &quot;mtcars_ods&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="co">## ods_sheets(&quot;plant.ods&quot;)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Sheet1&quot;     &quot;mtcars_ods&quot;</span></span></code></pre></div>
 </div>
 <div id="get_num_sheets_in_ods-and-getnrofsheetsinods" class="section level3">
 <h3><code>get_num_sheets_in_ods</code> and <code>getNrOfSheetsInODS</code></h3>
 <p>Please use <code>list_ods_sheets</code></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co">##get_num_sheets_in_ods(&quot;plant.ods&quot;)</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">length</span>(<span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="co">##get_num_sheets_in_ods(&quot;plant.ods&quot;)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="kw">length</span>(<span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 </div>
 <div id="read.ods" class="section level3">
 <h3><code>read.ods</code></h3>
 <p>Please use <code>read_ods</code>. In order to emulate the behaviours of <code>read.ods</code>, the followings are recommended</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="co">## read.ods from 1.6 to 1.8</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">skip =</span> <span class="dv">0</span>, <span class="dt">na =</span> <span class="ot">NULL</span>, <span class="dt">col_types =</span> <span class="ot">NA</span>, <span class="dt">as_tibble =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="co">#&gt; New names:</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...1`</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...2`</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a><span class="co">#&gt;      ...1  ...2</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a><span class="co">#&gt; 1  weight group</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a><span class="co">#&gt; 2    4.17  ctrl</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true"></a><span class="co">#&gt; 3    5.58  ctrl</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true"></a><span class="co">#&gt; 4    5.18  ctrl</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true"></a><span class="co">#&gt; 5    6.11  ctrl</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true"></a><span class="co">#&gt; 6     4.5  ctrl</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true"></a><span class="co">#&gt; 7    4.61  ctrl</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true"></a><span class="co">#&gt; 8    5.17  ctrl</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true"></a><span class="co">#&gt; 9    4.53  ctrl</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true"></a><span class="co">#&gt; 10   5.33  ctrl</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true"></a><span class="co">#&gt; 11   5.14  ctrl</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true"></a><span class="co">#&gt; 12   4.81  trt1</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true"></a><span class="co">#&gt; 13   4.17  trt1</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true"></a><span class="co">#&gt; 14   4.41  trt1</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true"></a><span class="co">#&gt; 15   3.59  trt1</span></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true"></a><span class="co">#&gt; 16   5.87  trt1</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true"></a><span class="co">#&gt; 17   3.83  trt1</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true"></a><span class="co">#&gt; 18   6.03  trt1</span></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true"></a><span class="co">#&gt; 19   4.89  trt1</span></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true"></a><span class="co">#&gt; 20   4.32  trt1</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true"></a><span class="co">#&gt; 21   4.69  trt1</span></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true"></a><span class="co">#&gt; 22   6.31  trt2</span></span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true"></a><span class="co">#&gt; 23   5.12  trt2</span></span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true"></a><span class="co">#&gt; 24   5.54  trt2</span></span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true"></a><span class="co">#&gt; 25    5.5  trt2</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true"></a><span class="co">#&gt; 26   5.37  trt2</span></span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true"></a><span class="co">#&gt; 27   5.29  trt2</span></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true"></a><span class="co">#&gt; 28   4.92  trt2</span></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true"></a><span class="co">#&gt; 29   6.15  trt2</span></span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true"></a><span class="co">#&gt; 30    5.8  trt2</span></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true"></a><span class="co">#&gt; 31   5.26  trt2</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="co">## read.ods older than 1.6</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>),</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>       <span class="cf">function</span>(x) <span class="kw">read_ods</span>(<span class="dt">path =</span> <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> x, <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">skip =</span> <span class="dv">0</span>, <span class="dt">na =</span> <span class="ot">NULL</span>, <span class="dt">col_types =</span> <span class="ot">NA</span>, <span class="dt">as_tibble =</span> <span class="ot">FALSE</span>))</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="co">#&gt; New names:</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a><span class="co">#&gt; New names:</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...1`</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...2`</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a><span class="co">#&gt;      ...1  ...2</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a><span class="co">#&gt; 1  weight group</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a><span class="co">#&gt; 2    4.17  ctrl</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true"></a><span class="co">#&gt; 3    5.58  ctrl</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true"></a><span class="co">#&gt; 4    5.18  ctrl</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true"></a><span class="co">#&gt; 5    6.11  ctrl</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true"></a><span class="co">#&gt; 6     4.5  ctrl</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true"></a><span class="co">#&gt; 7    4.61  ctrl</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true"></a><span class="co">#&gt; 8    5.17  ctrl</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true"></a><span class="co">#&gt; 9    4.53  ctrl</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true"></a><span class="co">#&gt; 10   5.33  ctrl</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true"></a><span class="co">#&gt; 11   5.14  ctrl</span></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true"></a><span class="co">#&gt; 12   4.81  trt1</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true"></a><span class="co">#&gt; 13   4.17  trt1</span></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true"></a><span class="co">#&gt; 14   4.41  trt1</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true"></a><span class="co">#&gt; 15   3.59  trt1</span></span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true"></a><span class="co">#&gt; 16   5.87  trt1</span></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true"></a><span class="co">#&gt; 17   3.83  trt1</span></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true"></a><span class="co">#&gt; 18   6.03  trt1</span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true"></a><span class="co">#&gt; 19   4.89  trt1</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true"></a><span class="co">#&gt; 20   4.32  trt1</span></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true"></a><span class="co">#&gt; 21   4.69  trt1</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true"></a><span class="co">#&gt; 22   6.31  trt2</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true"></a><span class="co">#&gt; 23   5.12  trt2</span></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true"></a><span class="co">#&gt; 24   5.54  trt2</span></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true"></a><span class="co">#&gt; 25    5.5  trt2</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true"></a><span class="co">#&gt; 26   5.37  trt2</span></span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true"></a><span class="co">#&gt; 27   5.29  trt2</span></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true"></a><span class="co">#&gt; 28   4.92  trt2</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true"></a><span class="co">#&gt; 29   6.15  trt2</span></span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true"></a><span class="co">#&gt; 30    5.8  trt2</span></span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true"></a><span class="co">#&gt; 31   5.26  trt2</span></span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true"></a><span class="co">#&gt; </span></span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true"></a><span class="co">#&gt;                   ...1 ...2 ...3  ...4 ...5 ...6  ...7  ...8 ...9 ...10 ...11</span></span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true"></a><span class="co">#&gt; 1                       mpg  cyl  disp   hp drat    wt  qsec   vs    am  gear</span></span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true"></a><span class="co">#&gt; 2            Mazda RX4   21    6   160  110  3.9  2.62 16.46    0     1     4</span></span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true"></a><span class="co">#&gt; 3        Mazda RX4 Wag   21    6   160  110  3.9 2.875 17.02    0     1     4</span></span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true"></a><span class="co">#&gt; 4           Datsun 710 22.8    4   108   93 3.85  2.32 18.61    1     1     4</span></span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true"></a><span class="co">#&gt; 5       Hornet 4 Drive 21.4    6   258  110 3.08 3.215 19.44    1     0     3</span></span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true"></a><span class="co">#&gt; 6    Hornet Sportabout 18.7    8   360  175 3.15  3.44 17.02    0     0     3</span></span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true"></a><span class="co">#&gt; 7              Valiant 18.1    6   225  105 2.76  3.46 20.22    1     0     3</span></span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true"></a><span class="co">#&gt; 8           Duster 360 14.3    8   360  245 3.21  3.57 15.84    0     0     3</span></span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true"></a><span class="co">#&gt; 9            Merc 240D 24.4    4 146.7   62 3.69  3.19    20    1     0     4</span></span>
-<span id="cb20-53"><a href="#cb20-53" aria-hidden="true"></a><span class="co">#&gt; 10            Merc 230 22.8    4 140.8   95 3.92  3.15  22.9    1     0     4</span></span>
-<span id="cb20-54"><a href="#cb20-54" aria-hidden="true"></a><span class="co">#&gt; 11            Merc 280 19.2    6 167.6  123 3.92  3.44  18.3    1     0     4</span></span>
-<span id="cb20-55"><a href="#cb20-55" aria-hidden="true"></a><span class="co">#&gt; 12           Merc 280C 17.8    6 167.6  123 3.92  3.44  18.9    1     0     4</span></span>
-<span id="cb20-56"><a href="#cb20-56" aria-hidden="true"></a><span class="co">#&gt; 13          Merc 450SE 16.4    8 275.8  180 3.07  4.07  17.4    0     0     3</span></span>
-<span id="cb20-57"><a href="#cb20-57" aria-hidden="true"></a><span class="co">#&gt; 14          Merc 450SL 17.3    8 275.8  180 3.07  3.73  17.6    0     0     3</span></span>
-<span id="cb20-58"><a href="#cb20-58" aria-hidden="true"></a><span class="co">#&gt; 15         Merc 450SLC 15.2    8 275.8  180 3.07  3.78    18    0     0     3</span></span>
-<span id="cb20-59"><a href="#cb20-59" aria-hidden="true"></a><span class="co">#&gt; 16  Cadillac Fleetwood 10.4    8   472  205 2.93  5.25 17.98    0     0     3</span></span>
-<span id="cb20-60"><a href="#cb20-60" aria-hidden="true"></a><span class="co">#&gt; 17 Lincoln Continental 10.4    8   460  215    3 5.424 17.82    0     0     3</span></span>
-<span id="cb20-61"><a href="#cb20-61" aria-hidden="true"></a><span class="co">#&gt; 18   Chrysler Imperial 14.7    8   440  230 3.23 5.345 17.42    0     0     3</span></span>
-<span id="cb20-62"><a href="#cb20-62" aria-hidden="true"></a><span class="co">#&gt; 19            Fiat 128 32.4    4  78.7   66 4.08   2.2 19.47    1     1     4</span></span>
-<span id="cb20-63"><a href="#cb20-63" aria-hidden="true"></a><span class="co">#&gt; 20         Honda Civic 30.4    4  75.7   52 4.93 1.615 18.52    1     1     4</span></span>
-<span id="cb20-64"><a href="#cb20-64" aria-hidden="true"></a><span class="co">#&gt; 21      Toyota Corolla 33.9    4  71.1   65 4.22 1.835  19.9    1     1     4</span></span>
-<span id="cb20-65"><a href="#cb20-65" aria-hidden="true"></a><span class="co">#&gt; 22       Toyota Corona 21.5    4 120.1   97  3.7 2.465 20.01    1     0     3</span></span>
-<span id="cb20-66"><a href="#cb20-66" aria-hidden="true"></a><span class="co">#&gt; 23    Dodge Challenger 15.5    8   318  150 2.76  3.52 16.87    0     0     3</span></span>
-<span id="cb20-67"><a href="#cb20-67" aria-hidden="true"></a><span class="co">#&gt; 24         AMC Javelin 15.2    8   304  150 3.15 3.435  17.3    0     0     3</span></span>
-<span id="cb20-68"><a href="#cb20-68" aria-hidden="true"></a><span class="co">#&gt; 25          Camaro Z28 13.3    8   350  245 3.73  3.84 15.41    0     0     3</span></span>
-<span id="cb20-69"><a href="#cb20-69" aria-hidden="true"></a><span class="co">#&gt; 26    Pontiac Firebird 19.2    8   400  175 3.08 3.845 17.05    0     0     3</span></span>
-<span id="cb20-70"><a href="#cb20-70" aria-hidden="true"></a><span class="co">#&gt; 27           Fiat X1-9 27.3    4    79   66 4.08 1.935  18.9    1     1     4</span></span>
-<span id="cb20-71"><a href="#cb20-71" aria-hidden="true"></a><span class="co">#&gt; 28       Porsche 914-2   26    4 120.3   91 4.43  2.14  16.7    0     1     5</span></span>
-<span id="cb20-72"><a href="#cb20-72" aria-hidden="true"></a><span class="co">#&gt; 29        Lotus Europa 30.4    4  95.1  113 3.77 1.513  16.9    1     1     5</span></span>
-<span id="cb20-73"><a href="#cb20-73" aria-hidden="true"></a><span class="co">#&gt; 30      Ford Pantera L 15.8    8   351  264 4.22  3.17  14.5    0     1     5</span></span>
-<span id="cb20-74"><a href="#cb20-74" aria-hidden="true"></a><span class="co">#&gt; 31        Ferrari Dino 19.7    6   145  175 3.62  2.77  15.5    0     1     5</span></span>
-<span id="cb20-75"><a href="#cb20-75" aria-hidden="true"></a><span class="co">#&gt; 32       Maserati Bora   15    8   301  335 3.54  3.57  14.6    0     1     5</span></span>
-<span id="cb20-76"><a href="#cb20-76" aria-hidden="true"></a><span class="co">#&gt; 33          Volvo 142E 21.4    4   121  109 4.11  2.78  18.6    1     1     4</span></span>
-<span id="cb20-77"><a href="#cb20-77" aria-hidden="true"></a><span class="co">#&gt;    ...12</span></span>
-<span id="cb20-78"><a href="#cb20-78" aria-hidden="true"></a><span class="co">#&gt; 1   carb</span></span>
-<span id="cb20-79"><a href="#cb20-79" aria-hidden="true"></a><span class="co">#&gt; 2      4</span></span>
-<span id="cb20-80"><a href="#cb20-80" aria-hidden="true"></a><span class="co">#&gt; 3      4</span></span>
-<span id="cb20-81"><a href="#cb20-81" aria-hidden="true"></a><span class="co">#&gt; 4      1</span></span>
-<span id="cb20-82"><a href="#cb20-82" aria-hidden="true"></a><span class="co">#&gt; 5      1</span></span>
-<span id="cb20-83"><a href="#cb20-83" aria-hidden="true"></a><span class="co">#&gt; 6      2</span></span>
-<span id="cb20-84"><a href="#cb20-84" aria-hidden="true"></a><span class="co">#&gt; 7      1</span></span>
-<span id="cb20-85"><a href="#cb20-85" aria-hidden="true"></a><span class="co">#&gt; 8      4</span></span>
-<span id="cb20-86"><a href="#cb20-86" aria-hidden="true"></a><span class="co">#&gt; 9      2</span></span>
-<span id="cb20-87"><a href="#cb20-87" aria-hidden="true"></a><span class="co">#&gt; 10     2</span></span>
-<span id="cb20-88"><a href="#cb20-88" aria-hidden="true"></a><span class="co">#&gt; 11     4</span></span>
-<span id="cb20-89"><a href="#cb20-89" aria-hidden="true"></a><span class="co">#&gt; 12     4</span></span>
-<span id="cb20-90"><a href="#cb20-90" aria-hidden="true"></a><span class="co">#&gt; 13     3</span></span>
-<span id="cb20-91"><a href="#cb20-91" aria-hidden="true"></a><span class="co">#&gt; 14     3</span></span>
-<span id="cb20-92"><a href="#cb20-92" aria-hidden="true"></a><span class="co">#&gt; 15     3</span></span>
-<span id="cb20-93"><a href="#cb20-93" aria-hidden="true"></a><span class="co">#&gt; 16     4</span></span>
-<span id="cb20-94"><a href="#cb20-94" aria-hidden="true"></a><span class="co">#&gt; 17     4</span></span>
-<span id="cb20-95"><a href="#cb20-95" aria-hidden="true"></a><span class="co">#&gt; 18     4</span></span>
-<span id="cb20-96"><a href="#cb20-96" aria-hidden="true"></a><span class="co">#&gt; 19     1</span></span>
-<span id="cb20-97"><a href="#cb20-97" aria-hidden="true"></a><span class="co">#&gt; 20     2</span></span>
-<span id="cb20-98"><a href="#cb20-98" aria-hidden="true"></a><span class="co">#&gt; 21     1</span></span>
-<span id="cb20-99"><a href="#cb20-99" aria-hidden="true"></a><span class="co">#&gt; 22     1</span></span>
-<span id="cb20-100"><a href="#cb20-100" aria-hidden="true"></a><span class="co">#&gt; 23     2</span></span>
-<span id="cb20-101"><a href="#cb20-101" aria-hidden="true"></a><span class="co">#&gt; 24     2</span></span>
-<span id="cb20-102"><a href="#cb20-102" aria-hidden="true"></a><span class="co">#&gt; 25     4</span></span>
-<span id="cb20-103"><a href="#cb20-103" aria-hidden="true"></a><span class="co">#&gt; 26     2</span></span>
-<span id="cb20-104"><a href="#cb20-104" aria-hidden="true"></a><span class="co">#&gt; 27     1</span></span>
-<span id="cb20-105"><a href="#cb20-105" aria-hidden="true"></a><span class="co">#&gt; 28     2</span></span>
-<span id="cb20-106"><a href="#cb20-106" aria-hidden="true"></a><span class="co">#&gt; 29     2</span></span>
-<span id="cb20-107"><a href="#cb20-107" aria-hidden="true"></a><span class="co">#&gt; 30     4</span></span>
-<span id="cb20-108"><a href="#cb20-108" aria-hidden="true"></a><span class="co">#&gt; 31     6</span></span>
-<span id="cb20-109"><a href="#cb20-109" aria-hidden="true"></a><span class="co">#&gt; 32     8</span></span>
-<span id="cb20-110"><a href="#cb20-110" aria-hidden="true"></a><span class="co">#&gt; 33     2</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="co">## read.ods from 1.6 to 1.8</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a><span class="kw">read_ods</span>(<span class="st">&quot;plant.ods&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">skip =</span> <span class="dv">0</span>, <span class="dt">na =</span> <span class="ot">NULL</span>, <span class="dt">col_types =</span> <span class="ot">NA</span>, <span class="dt">as_tibble =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="co">#&gt; New names:</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...1`</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...2`</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a><span class="co">#&gt;      ...1  ...2</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="co">#&gt; 1  weight group</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a><span class="co">#&gt; 2    4.17  ctrl</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a><span class="co">#&gt; 3    5.58  ctrl</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true"></a><span class="co">#&gt; 4    5.18  ctrl</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true"></a><span class="co">#&gt; 5    6.11  ctrl</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true"></a><span class="co">#&gt; 6     4.5  ctrl</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true"></a><span class="co">#&gt; 7    4.61  ctrl</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true"></a><span class="co">#&gt; 8    5.17  ctrl</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true"></a><span class="co">#&gt; 9    4.53  ctrl</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true"></a><span class="co">#&gt; 10   5.33  ctrl</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true"></a><span class="co">#&gt; 11   5.14  ctrl</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true"></a><span class="co">#&gt; 12   4.81  trt1</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true"></a><span class="co">#&gt; 13   4.17  trt1</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true"></a><span class="co">#&gt; 14   4.41  trt1</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true"></a><span class="co">#&gt; 15   3.59  trt1</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true"></a><span class="co">#&gt; 16   5.87  trt1</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true"></a><span class="co">#&gt; 17   3.83  trt1</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true"></a><span class="co">#&gt; 18   6.03  trt1</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true"></a><span class="co">#&gt; 19   4.89  trt1</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true"></a><span class="co">#&gt; 20   4.32  trt1</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true"></a><span class="co">#&gt; 21   4.69  trt1</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true"></a><span class="co">#&gt; 22   6.31  trt2</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true"></a><span class="co">#&gt; 23   5.12  trt2</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true"></a><span class="co">#&gt; 24   5.54  trt2</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true"></a><span class="co">#&gt; 25    5.5  trt2</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true"></a><span class="co">#&gt; 26   5.37  trt2</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true"></a><span class="co">#&gt; 27   5.29  trt2</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true"></a><span class="co">#&gt; 28   4.92  trt2</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true"></a><span class="co">#&gt; 29   6.15  trt2</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true"></a><span class="co">#&gt; 30    5.8  trt2</span></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true"></a><span class="co">#&gt; 31   5.26  trt2</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="co">## read.ods older than 1.6</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="kw">lapply</span>(<span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a>       <span class="cf">function</span>(x) <span class="kw">read_ods</span>(<span class="dt">path =</span> <span class="st">&quot;plant.ods&quot;</span>, <span class="dt">sheet =</span> x, <span class="dt">col_names =</span> <span class="ot">FALSE</span>, <span class="dt">skip =</span> <span class="dv">0</span>, <span class="dt">na =</span> <span class="ot">NULL</span>, <span class="dt">col_types =</span> <span class="ot">NA</span>, <span class="dt">as_tibble =</span> <span class="ot">FALSE</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a><span class="co">#&gt; New names:</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a><span class="co">#&gt; New names:</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...1`</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a><span class="co">#&gt; • `` -&gt; `...2`</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true"></a><span class="co">#&gt;      ...1  ...2</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true"></a><span class="co">#&gt; 1  weight group</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true"></a><span class="co">#&gt; 2    4.17  ctrl</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true"></a><span class="co">#&gt; 3    5.58  ctrl</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true"></a><span class="co">#&gt; 4    5.18  ctrl</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true"></a><span class="co">#&gt; 5    6.11  ctrl</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true"></a><span class="co">#&gt; 6     4.5  ctrl</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true"></a><span class="co">#&gt; 7    4.61  ctrl</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true"></a><span class="co">#&gt; 8    5.17  ctrl</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true"></a><span class="co">#&gt; 9    4.53  ctrl</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true"></a><span class="co">#&gt; 10   5.33  ctrl</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true"></a><span class="co">#&gt; 11   5.14  ctrl</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true"></a><span class="co">#&gt; 12   4.81  trt1</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true"></a><span class="co">#&gt; 13   4.17  trt1</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true"></a><span class="co">#&gt; 14   4.41  trt1</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true"></a><span class="co">#&gt; 15   3.59  trt1</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true"></a><span class="co">#&gt; 16   5.87  trt1</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true"></a><span class="co">#&gt; 17   3.83  trt1</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true"></a><span class="co">#&gt; 18   6.03  trt1</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true"></a><span class="co">#&gt; 19   4.89  trt1</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true"></a><span class="co">#&gt; 20   4.32  trt1</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true"></a><span class="co">#&gt; 21   4.69  trt1</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true"></a><span class="co">#&gt; 22   6.31  trt2</span></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true"></a><span class="co">#&gt; 23   5.12  trt2</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true"></a><span class="co">#&gt; 24   5.54  trt2</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true"></a><span class="co">#&gt; 25    5.5  trt2</span></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true"></a><span class="co">#&gt; 26   5.37  trt2</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true"></a><span class="co">#&gt; 27   5.29  trt2</span></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true"></a><span class="co">#&gt; 28   4.92  trt2</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true"></a><span class="co">#&gt; 29   6.15  trt2</span></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true"></a><span class="co">#&gt; 30    5.8  trt2</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true"></a><span class="co">#&gt; 31   5.26  trt2</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true"></a><span class="co">#&gt;                   ...1 ...2 ...3  ...4 ...5 ...6  ...7  ...8 ...9 ...10 ...11</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true"></a><span class="co">#&gt; 1                       mpg  cyl  disp   hp drat    wt  qsec   vs    am  gear</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true"></a><span class="co">#&gt; 2            Mazda RX4   21    6   160  110  3.9  2.62 16.46    0     1     4</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true"></a><span class="co">#&gt; 3        Mazda RX4 Wag   21    6   160  110  3.9 2.875 17.02    0     1     4</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true"></a><span class="co">#&gt; 4           Datsun 710 22.8    4   108   93 3.85  2.32 18.61    1     1     4</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true"></a><span class="co">#&gt; 5       Hornet 4 Drive 21.4    6   258  110 3.08 3.215 19.44    1     0     3</span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true"></a><span class="co">#&gt; 6    Hornet Sportabout 18.7    8   360  175 3.15  3.44 17.02    0     0     3</span></span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true"></a><span class="co">#&gt; 7              Valiant 18.1    6   225  105 2.76  3.46 20.22    1     0     3</span></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true"></a><span class="co">#&gt; 8           Duster 360 14.3    8   360  245 3.21  3.57 15.84    0     0     3</span></span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true"></a><span class="co">#&gt; 9            Merc 240D 24.4    4 146.7   62 3.69  3.19    20    1     0     4</span></span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true"></a><span class="co">#&gt; 10            Merc 230 22.8    4 140.8   95 3.92  3.15  22.9    1     0     4</span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true"></a><span class="co">#&gt; 11            Merc 280 19.2    6 167.6  123 3.92  3.44  18.3    1     0     4</span></span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true"></a><span class="co">#&gt; 12           Merc 280C 17.8    6 167.6  123 3.92  3.44  18.9    1     0     4</span></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true"></a><span class="co">#&gt; 13          Merc 450SE 16.4    8 275.8  180 3.07  4.07  17.4    0     0     3</span></span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true"></a><span class="co">#&gt; 14          Merc 450SL 17.3    8 275.8  180 3.07  3.73  17.6    0     0     3</span></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true"></a><span class="co">#&gt; 15         Merc 450SLC 15.2    8 275.8  180 3.07  3.78    18    0     0     3</span></span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true"></a><span class="co">#&gt; 16  Cadillac Fleetwood 10.4    8   472  205 2.93  5.25 17.98    0     0     3</span></span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true"></a><span class="co">#&gt; 17 Lincoln Continental 10.4    8   460  215    3 5.424 17.82    0     0     3</span></span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true"></a><span class="co">#&gt; 18   Chrysler Imperial 14.7    8   440  230 3.23 5.345 17.42    0     0     3</span></span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true"></a><span class="co">#&gt; 19            Fiat 128 32.4    4  78.7   66 4.08   2.2 19.47    1     1     4</span></span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true"></a><span class="co">#&gt; 20         Honda Civic 30.4    4  75.7   52 4.93 1.615 18.52    1     1     4</span></span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true"></a><span class="co">#&gt; 21      Toyota Corolla 33.9    4  71.1   65 4.22 1.835  19.9    1     1     4</span></span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true"></a><span class="co">#&gt; 22       Toyota Corona 21.5    4 120.1   97  3.7 2.465 20.01    1     0     3</span></span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true"></a><span class="co">#&gt; 23    Dodge Challenger 15.5    8   318  150 2.76  3.52 16.87    0     0     3</span></span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true"></a><span class="co">#&gt; 24         AMC Javelin 15.2    8   304  150 3.15 3.435  17.3    0     0     3</span></span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true"></a><span class="co">#&gt; 25          Camaro Z28 13.3    8   350  245 3.73  3.84 15.41    0     0     3</span></span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true"></a><span class="co">#&gt; 26    Pontiac Firebird 19.2    8   400  175 3.08 3.845 17.05    0     0     3</span></span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true"></a><span class="co">#&gt; 27           Fiat X1-9 27.3    4    79   66 4.08 1.935  18.9    1     1     4</span></span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true"></a><span class="co">#&gt; 28       Porsche 914-2   26    4 120.3   91 4.43  2.14  16.7    0     1     5</span></span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true"></a><span class="co">#&gt; 29        Lotus Europa 30.4    4  95.1  113 3.77 1.513  16.9    1     1     5</span></span>
+<span id="cb22-73"><a href="#cb22-73" aria-hidden="true"></a><span class="co">#&gt; 30      Ford Pantera L 15.8    8   351  264 4.22  3.17  14.5    0     1     5</span></span>
+<span id="cb22-74"><a href="#cb22-74" aria-hidden="true"></a><span class="co">#&gt; 31        Ferrari Dino 19.7    6   145  175 3.62  2.77  15.5    0     1     5</span></span>
+<span id="cb22-75"><a href="#cb22-75" aria-hidden="true"></a><span class="co">#&gt; 32       Maserati Bora   15    8   301  335 3.54  3.57  14.6    0     1     5</span></span>
+<span id="cb22-76"><a href="#cb22-76" aria-hidden="true"></a><span class="co">#&gt; 33          Volvo 142E 21.4    4   121  109 4.11  2.78  18.6    1     1     4</span></span>
+<span id="cb22-77"><a href="#cb22-77" aria-hidden="true"></a><span class="co">#&gt;    ...12</span></span>
+<span id="cb22-78"><a href="#cb22-78" aria-hidden="true"></a><span class="co">#&gt; 1   carb</span></span>
+<span id="cb22-79"><a href="#cb22-79" aria-hidden="true"></a><span class="co">#&gt; 2      4</span></span>
+<span id="cb22-80"><a href="#cb22-80" aria-hidden="true"></a><span class="co">#&gt; 3      4</span></span>
+<span id="cb22-81"><a href="#cb22-81" aria-hidden="true"></a><span class="co">#&gt; 4      1</span></span>
+<span id="cb22-82"><a href="#cb22-82" aria-hidden="true"></a><span class="co">#&gt; 5      1</span></span>
+<span id="cb22-83"><a href="#cb22-83" aria-hidden="true"></a><span class="co">#&gt; 6      2</span></span>
+<span id="cb22-84"><a href="#cb22-84" aria-hidden="true"></a><span class="co">#&gt; 7      1</span></span>
+<span id="cb22-85"><a href="#cb22-85" aria-hidden="true"></a><span class="co">#&gt; 8      4</span></span>
+<span id="cb22-86"><a href="#cb22-86" aria-hidden="true"></a><span class="co">#&gt; 9      2</span></span>
+<span id="cb22-87"><a href="#cb22-87" aria-hidden="true"></a><span class="co">#&gt; 10     2</span></span>
+<span id="cb22-88"><a href="#cb22-88" aria-hidden="true"></a><span class="co">#&gt; 11     4</span></span>
+<span id="cb22-89"><a href="#cb22-89" aria-hidden="true"></a><span class="co">#&gt; 12     4</span></span>
+<span id="cb22-90"><a href="#cb22-90" aria-hidden="true"></a><span class="co">#&gt; 13     3</span></span>
+<span id="cb22-91"><a href="#cb22-91" aria-hidden="true"></a><span class="co">#&gt; 14     3</span></span>
+<span id="cb22-92"><a href="#cb22-92" aria-hidden="true"></a><span class="co">#&gt; 15     3</span></span>
+<span id="cb22-93"><a href="#cb22-93" aria-hidden="true"></a><span class="co">#&gt; 16     4</span></span>
+<span id="cb22-94"><a href="#cb22-94" aria-hidden="true"></a><span class="co">#&gt; 17     4</span></span>
+<span id="cb22-95"><a href="#cb22-95" aria-hidden="true"></a><span class="co">#&gt; 18     4</span></span>
+<span id="cb22-96"><a href="#cb22-96" aria-hidden="true"></a><span class="co">#&gt; 19     1</span></span>
+<span id="cb22-97"><a href="#cb22-97" aria-hidden="true"></a><span class="co">#&gt; 20     2</span></span>
+<span id="cb22-98"><a href="#cb22-98" aria-hidden="true"></a><span class="co">#&gt; 21     1</span></span>
+<span id="cb22-99"><a href="#cb22-99" aria-hidden="true"></a><span class="co">#&gt; 22     1</span></span>
+<span id="cb22-100"><a href="#cb22-100" aria-hidden="true"></a><span class="co">#&gt; 23     2</span></span>
+<span id="cb22-101"><a href="#cb22-101" aria-hidden="true"></a><span class="co">#&gt; 24     2</span></span>
+<span id="cb22-102"><a href="#cb22-102" aria-hidden="true"></a><span class="co">#&gt; 25     4</span></span>
+<span id="cb22-103"><a href="#cb22-103" aria-hidden="true"></a><span class="co">#&gt; 26     2</span></span>
+<span id="cb22-104"><a href="#cb22-104" aria-hidden="true"></a><span class="co">#&gt; 27     1</span></span>
+<span id="cb22-105"><a href="#cb22-105" aria-hidden="true"></a><span class="co">#&gt; 28     2</span></span>
+<span id="cb22-106"><a href="#cb22-106" aria-hidden="true"></a><span class="co">#&gt; 29     2</span></span>
+<span id="cb22-107"><a href="#cb22-107" aria-hidden="true"></a><span class="co">#&gt; 30     4</span></span>
+<span id="cb22-108"><a href="#cb22-108" aria-hidden="true"></a><span class="co">#&gt; 31     6</span></span>
+<span id="cb22-109"><a href="#cb22-109" aria-hidden="true"></a><span class="co">#&gt; 32     8</span></span>
+<span id="cb22-110"><a href="#cb22-110" aria-hidden="true"></a><span class="co">#&gt; 33     2</span></span></code></pre></div>
 </div>
 </div>
 <div class="footnotes">

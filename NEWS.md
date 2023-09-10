@@ -1,3 +1,95 @@
+# readODS 2.1.0
+
+## CRAN version
+
+# readODS 2.0.7
+
+## `append` and `update` of `write_ods` in C++
+
+Significant speed improvement; also `xml2` is no longer a dependency.
+
+## POTENTIALLY BREAKING: reading single-row / single-column (F)ODS and `col_names` / `row_names` 
+
+Prior the previous stable release, <= 1.9.0, reading single-row / single-column with `col_names = TRUE` / `row_names = TRUE` produced errors.
+
+In v1.9.0 (and the stable version v2.0.0 on CRAN), reading single-row / single-column (F)ODS with `col_names = TRUE` / `row_names = TRUE` will
+override the two parameters and return a non-empty data frame. This behaviour is consistent with other data reading R functions (see #146) such as `readxl::read_xlsx()`, `readr::read_csv()`, `data.table::fread()`, and `openxlsx::read.xlsx()`. For these functions, either a empty or zero-row data.frame is returned.
+
+We changed this behaviour. The following will return a zero-row data.frame by default.
+
+```r
+read_ods(write_ods(mtcars[0,])) ## col_names is TRUE by default
+```
+
+However, the previous behaviour is in the stable release and backward compatibility is needed. If you need that previous behaviour, please set the `options("readODS.v200" = TRUE)`
+
+```r
+options("readODS.v200" = TRUE)
+read_ods(write_ods(mtcars[0,])) ## col_names is TRUE by default
+```
+
+# readODS 2.06
+
+## `write_ods` and `write_fods` allow list of data frames
+
+Fix #56; and it is now the same as `writexl::write_xlsx()`.
+
+```r
+write_ods(list("some_car_data" = mtcars, "some_flower_data" = iris))
+```
+
+## bug fixes
+
+* Fix #157 `list_fods_sheets()` and `read_fods()` cannot accept `~` as path
+* Fix #163 `list_fods_sheets()` can't guard non-fods XML disguised as fods
+
+# readODS 2.05
+
+## Reverse the decision to deprecate `ods_sheets`
+
+See discussion #133
+
+# readODS 2.04
+
+## `col_types` can be character ("shorthand") or list
+
+fix #135 and the review by Dr Ruedni
+
+```r
+# Specifying col_types as shorthand, the third column as factor; other by guessing
+read_ods("starwars.ods", col_types = "??f")
+# Specifying col_types as list
+read_ods("starwars.ods", col_types = list(species = "f"))
+```
+
+# readODS 2.0.3
+
+## Add support for writing flat ODS
+
+`write_fods` is available, fix #103
+
+# readODS 2.0.2
+
+## performance improvement for `write_ods`
+
+`write_ods` has been partially rewritten in C++ #140
+
+## Ensure R 3.6 compatibility
+
+To ensure UTF-8 everywhere, fix #107
+
+Bump requirement to R>=3.6
+
+## Bug fixes
+
+* write empty sheet #142
+
+# readODS 2.0.1
+
+## Fix writing data time columns error #137
+
+`dttm` column was incorrectly written with one more column. It's now fixed. 
+
 # readODS 2.0.0
 
 ## BREAKING CHANGES: Changed `write_ods(na_as_string)` behaviour

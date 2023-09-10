@@ -3,6 +3,7 @@
 
 #include <cstring>
 #include <fstream>
+#include <stdexcept>
 
 bool is_ods(const std::string file){
     /*Checks that file conforms to some of the spec at
@@ -14,7 +15,7 @@ bool is_ods(const std::string file){
     We don't care about the file extension*/
     /*Check that it contains the proper files*/
     if (!zip_has_file(file, "content.xml")){
-        /*Strictly speaking this isn't required in the spec, but 
+        /*Strictly speaking this isn't required in the spec, but
         we're only interested in files with content.*/
         return false;
     }
@@ -40,7 +41,7 @@ bool is_ods(const std::string file){
     if (!(rootNode->first_node("office:body"))){
         return false;
     }
-    /*Check Section 2.2.4 C) - this is a spreadsheet*/ 
+    /*Check Section 2.2.4 C) - this is a spreadsheet*/
     if (!(rootNode->first_node("office:body")->first_node("office:spreadsheet"))){
         return false;
     }
@@ -66,7 +67,7 @@ bool is_flat_ods(const std::string file){
     }
 
     xmlFile.push_back('\0');
-    
+
     try {
         workbook.parse<0>(&xmlFile[0]);
     } catch (const rapidxml::parse_error& e) {
@@ -76,12 +77,8 @@ bool is_flat_ods(const std::string file){
             throw std::invalid_argument("XML parse error");
         }
     }
-
-    rootNode = workbook.first_node();
     // Section 2.2.1C)
-    while(rootNode != 0 && strcmp(rootNode->name(), "office:document") != 0){
-        rootNode->next_sibling();
-    }
+    rootNode = workbook.first_node("office:document");
     if (rootNode == 0){
         return false;
     }
@@ -90,10 +87,10 @@ bool is_flat_ods(const std::string file){
     if (!(rootNode->first_node("office:body"))){
         return false;
     }
-    /*Check Section 2.2.4 C) - this is a spreadsheet*/ 
+    /*Check Section 2.2.4 C) - this is a spreadsheet*/
     if (!(rootNode->first_node("office:body")->first_node("office:spreadsheet"))){
         return false;
     }
-    
+
     return true;
 }

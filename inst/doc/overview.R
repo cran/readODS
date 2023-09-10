@@ -37,8 +37,15 @@ write_ods(iris, "plant.ods", sheet = "mtcars_ods", append = TRUE)
 ## ----update_error, error = TRUE-----------------------------------------------
 write_ods(iris, "plant.ods", sheet = "iris", update = TRUE)
 
+## ----writelist----------------------------------------------------------------
+write_ods(list("iris" = iris, "plant" = PlantGrowth), "plant_multi.ods")
+read_ods("plant_multi.ods", sheet = "plant")
+
 ## ----read fods, eval = file.exists("plant.fods")------------------------------
 #  read_fods("plant.fods")
+
+## ----write_fods---------------------------------------------------------------
+write_fods(PlantGrowth, "plant.fods")
 
 ## ---- list_ods_sheets---------------------------------------------------------
 list_ods_sheets("plant.ods")
@@ -79,4 +86,6 @@ lapply(list_ods_sheets("plant.ods"),
 
 ## ---- echo = FALSE, message = FALSE-------------------------------------------
 unlink("plant.ods")
+unlink("plant.fods")
+unlink("plant_multi.ods")
 
