@@ -1,3 +1,15 @@
+# readODS 2.2.0
+
+* Fix #151 - Now `read_ods()` and `list_ods_sheets()` can also be used to process flat ods files. `read_fods()` and `list_fods_sheets()` are still available, but not as the so-called "common interface."
+* Fix #154 - `read_ods()` and `read_fods()` have two arguments - `trim_ws` and `n_max` which are the same as the arguments of `readxl::read_excel()`.
+
+# readODS 2.1.1
+
+## Bug fixes
+
+* Fix #170 - .name_repair is correctly passed.
+* Fix #180 - specify the minimum `cpp11` version
+
 # readODS 2.1.0
 
 ## CRAN version

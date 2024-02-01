@@ -10,6 +10,14 @@ test_that("Error when not correct", {
   expect_error(read_fods("../testdata/notreal.ods"))
 })
 
+test_that("exceptions in C++ (hard to test)", {
+    tempfods <- tempfile(fileext = ".fods")
+    x <- writeLines("<html><a></a></html>", tempfods)
+    expect_error(read_fods(tempfods), "is not a correct FODS file")
+    expect_error(read_fods(path = "../testdata/flat.fods", sheet = -1), "Cannot have sheet index less than 1")
+    expect_error(read_fods("alkfjlkasd/daslkff/dsaahsg"), "file does not exist")
+})
+
 test_that("fix #157", {
     skip_if(file.access("~/", 2) != 0)
     file.copy("../testdata/flat.fods", "~/flat_you_must_not_use_this_path.fods")
@@ -27,12 +35,9 @@ test_that("Return blank/error if mangled FODS", {
 
 ## V2.0.0 behavior: backward compatibility
 
-ori_option <- getOption("readODS.v200") ## probably NULL
-options("readODS.v200" = TRUE)
-
 test_that("Return blank/error if mangled FODS v2.0.0", {
-    expect_warning(read_fods("../testdata/norows.fods"))
-    expect_warning(read_fods("../testdata/nocells.fods"))
+    withr::with_options(list(readODS.v200 = TRUE), {
+        expect_warning(read_fods("../testdata/norows.fods"))
+        expect_warning(read_fods("../testdata/nocells.fods"))
+    })
 })
-
-options("readODS.v200" = ori_option)

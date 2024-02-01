@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -45,12 +45,12 @@ read_ods("plant_multi.ods", sheet = "plant")
 #  read_fods("plant.fods")
 
 ## ----write_fods---------------------------------------------------------------
-write_fods(PlantGrowth, "plant.fods")
+write_ods(PlantGrowth, "plant.fods")
 
-## ---- list_ods_sheets---------------------------------------------------------
+## ----list_ods_sheets----------------------------------------------------------
 list_ods_sheets("plant.ods")
 
-## ---- empty1------------------------------------------------------------------
+## ----empty1-------------------------------------------------------------------
 PlantGrowth2 <- tibble::as_tibble(PlantGrowth)
 PlantGrowth2[1,1] <- NA
 PlantGrowth2$group <- as.character(PlantGrowth2$group)
@@ -58,33 +58,33 @@ PlantGrowth2$group <- as.character(PlantGrowth2$group)
 ## NA is preseved; weight is still <dbl>
 read_ods(write_ods(PlantGrowth2))
 
-## ---- empty2------------------------------------------------------------------
+## ----empty2-------------------------------------------------------------------
 ## NA is preseved; but weight is now <chr>
 read_ods(write_ods(PlantGrowth2, na_as_string = TRUE))
 
-## ---- empty3------------------------------------------------------------------
+## ----empty3-------------------------------------------------------------------
 ## NA is preseved; but weight is now <chr>
 read_ods(write_ods(PlantGrowth2, na_as_string = TRUE),
          col_types = readr::cols(weight = readr::col_double()))
 
-## ---- list_ods_sheets20-------------------------------------------------------
+## ----list_ods_sheets20--------------------------------------------------------
 ## ods_sheets("plant.ods")
 list_ods_sheets("plant.ods")
 
-## ---- getnum20----------------------------------------------------------------
+## ----getnum20-----------------------------------------------------------------
 ##get_num_sheets_in_ods("plant.ods")
 length(list_ods_sheets("plant.ods"))
 
-## ---- readdotods17------------------------------------------------------------
+## ----readdotods17-------------------------------------------------------------
 ## read.ods from 1.6 to 1.8
 read_ods("plant.ods", col_names = FALSE, skip = 0, na = NULL, col_types = NA, as_tibble = FALSE)
 
-## ---- readotods16-------------------------------------------------------------
+## ----readotods16--------------------------------------------------------------
 ## read.ods older than 1.6
 lapply(list_ods_sheets("plant.ods"),
        function(x) read_ods(path = "plant.ods", sheet = x, col_names = FALSE, skip = 0, na = NULL, col_types = NA, as_tibble = FALSE))
 
-## ---- echo = FALSE, message = FALSE-------------------------------------------
+## ----echo = FALSE, message = FALSE--------------------------------------------
 unlink("plant.ods")
 unlink("plant.fods")
 unlink("plant_multi.ods")

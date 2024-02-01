@@ -479,14 +479,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="flat-ods-files-.xml-or-.fods" class="section level2">
 <h2>Flat ODS files (<code>.xml</code> or <code>.fods</code>)</h2>
-<p>Can be read with <code>read_fods()</code> (note that the same function is used to read flat files, no matter the extension). This has the same behaviour and arguments as <code>read_ods()</code></p>
+<p>Can be read with <code>read_ods()</code> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> (note that the same function is used to read flat files, no matter the extension). This has the same behaviour and arguments as <code>read_ods()</code></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">read_fods</span>(<span class="st">&quot;plant.fods&quot;</span>)</span></code></pre></div>
-<p><code>write_fods()</code> can be used to write Flat ODS files</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">write_fods</span>(PlantGrowth, <span class="st">&quot;plant.fods&quot;</span>)</span></code></pre></div>
+<p><code>write_ods()</code> can be used to write Flat ODS files</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">write_ods</span>(PlantGrowth, <span class="st">&quot;plant.fods&quot;</span>)</span></code></pre></div>
 </div>
 <div id="misc." class="section level2">
 <h2>Misc.</h2>
-<p>Use the function <code>list_ods_sheets()</code> or <code>list_fods_sheets()</code> to list out all sheets in an (F)ODS file.</p>
+<p>Use the function <code>list_ods_sheets()</code> to list out all sheets in an (F)ODS file.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">list_ods_sheets</span>(<span class="st">&quot;plant.ods&quot;</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;Sheet1&quot;     &quot;mtcars_ods&quot;</span></span></code></pre></div>
 </div>
@@ -715,12 +715,14 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb22-108"><a href="#cb22-108" aria-hidden="true"></a><span class="co">#&gt; 31     6</span></span>
 <span id="cb22-109"><a href="#cb22-109" aria-hidden="true"></a><span class="co">#&gt; 32     8</span></span>
 <span id="cb22-110"><a href="#cb22-110" aria-hidden="true"></a><span class="co">#&gt; 33     2</span></span></code></pre></div>
+<hr />
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>GESIS Leibniz-Institut für Sozialwissenschaften<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><code>read_fods()</code> and <code>list_fods_sheets()</code> are also available. But since version 2.2.0 <code>read_ods()</code> and <code>list_ods_sheets()</code> can determine whether the file at the <code>path</code> argument is flat or not.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
