@@ -1,3 +1,12 @@
+# readODS 2.3.0
+
+* Use `minty` instead of `readr` to reduce the number of dependencies
+* Fix #173, Use a modified vendored version of `cpp11` to avoid the "non-API calls"
+
+## Bug fixes
+
+* Fix #185 - `trim_ws` for `colnames` behaves the same as `readxl::read_xlsx()`.
+
 # readODS 2.2.0
 
 * Fix #151 - Now `read_ods()` and `list_ods_sheets()` can also be used to process flat ods files. `read_fods()` and `list_fods_sheets()` are still available, but not as the so-called "common interface."
