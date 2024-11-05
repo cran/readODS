@@ -31,12 +31,6 @@ read_ods("plant.ods", sheet = "mtcars_ods")
 ## ----read_ods_mtcars_range----------------------------------------------------
 read_ods("plant.ods", sheet = "mtcars_ods", range = "A1:C10")
 
-## ----append_error, error = TRUE-----------------------------------------------
-write_ods(iris, "plant.ods", sheet = "mtcars_ods", append = TRUE)
-
-## ----update_error, error = TRUE-----------------------------------------------
-write_ods(iris, "plant.ods", sheet = "iris", update = TRUE)
-
 ## ----writelist----------------------------------------------------------------
 write_ods(list("iris" = iris, "plant" = PlantGrowth), "plant_multi.ods")
 read_ods("plant_multi.ods", sheet = "plant")

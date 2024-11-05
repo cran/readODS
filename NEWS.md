@@ -1,3 +1,12 @@
+# readODS 2.3.1
+
+* Undo #173, use `cpp11` like 2.2.0
+
+## Bug fixes
+
+* Fix #190 a potential GC issue in the vendored cpp11 code, detected by rchk 
+* Fix #203 documentation issues
+
 # readODS 2.3.0
 
 * Use `minty` instead of `readr` to reduce the number of dependencies
