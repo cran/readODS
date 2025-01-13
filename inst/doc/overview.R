@@ -36,7 +36,7 @@ write_ods(list("iris" = iris, "plant" = PlantGrowth), "plant_multi.ods")
 read_ods("plant_multi.ods", sheet = "plant")
 
 ## ----read fods, eval = file.exists("plant.fods")------------------------------
-#  read_fods("plant.fods")
+# read_fods("plant.fods")
 
 ## ----write_fods---------------------------------------------------------------
 write_ods(PlantGrowth, "plant.fods")

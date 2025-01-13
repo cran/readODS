@@ -1,7 +1,7 @@
 Package: readODS
 Type: Package
 Title: Read and Write ODS Files
-Version: 2.3.1
+Version: 2.3.2
 Authors@R: 
     c(person("Gerrit-Jan", "Schutten", role = c("aut"), email = "phonixor@gmail.com"),
     person("Chung-hong", "Chan", role = c("aut", "cre"), email = "chainsawtiney@gmail.com", comment = c(ORCID = "0000-0002-6232-7530")),
@@ -24,8 +24,8 @@ Description: Read ODS (OpenDocument Spreadsheet) into R as data frame. Also supp
 URL: https://docs.ropensci.org/readODS/,
         https://github.com/ropensci/readODS
 BugReports: https://github.com/ropensci/readODS/issues
-Imports: cellranger, minty, stringi, tibble, vctrs (>= 0.4.2), zip,
-        tools
+Imports: cellranger, minty (>= 0.0.5), stringi, tibble, vctrs (>=
+        0.4.2), zip, tools
 LinkingTo: cpp11 (>= 0.5.0)
 Suggests: spelling, testthat, datasets, covr, knitr, rmarkdown, withr,
         readr (>= 1.2.1)
@@ -33,10 +33,10 @@ License: GPL-3
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 VignetteBuilder: knitr
-Depends: R (>= 3.6)
+Depends: R (>= 4.0)
 Language: en-GB
 NeedsCompilation: yes
-Packaged: 2024-11-05 12:15:51 UTC; chainsawriot
+Packaged: 2025-01-13 15:11:33 UTC; chainsawriot
 Author: Gerrit-Jan Schutten [aut],
   Chung-hong Chan [aut, cre] (<https://orcid.org/0000-0002-6232-7530>),
   Peter Brohan [aut],
@@ -56,4 +56,4 @@ Author: Gerrit-Jan Schutten [aut],
   Marcin Kalicinski [ctb, cph] (Author of included RapidXML code)
 Maintainer: Chung-hong Chan <chainsawtiney@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-11-05 14:00:02 UTC
+Date/Publication: 2025-01-13 15:40:02 UTC
