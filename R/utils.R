@@ -14,12 +14,14 @@ check_nonnegative_integer <- function(x, argument) {
 
 ## for single column, so `column_type`
 
-.sanitize <- function(x, column_type) {
+.sanitize <- function(x, column_type = "float") {
+    withr::local_options(list(OutDec = "."))
     if (column_type == "string") {
         return(.escape_xml(as.character(x)))
     }
     as.character(x)
 }
+
 .sanitize_df <- function(x, column_types) {
     mapply(.sanitize, x = x, column_type = column_types, SIMPLIFY = FALSE)
 }
@@ -34,4 +36,8 @@ check_nonnegative_integer <- function(x, argument) {
 .get_column_types <- function(x) {
     ## if ncol == 0, without as.character would return `logical(0)`
     as.character(ifelse(unlist(lapply(x, function(x) class(x)[1])) %in% c("integer", "numeric"), "float", "string"))
+}
+
+.is_interactive <- function(...) {
+    interactive()
 }

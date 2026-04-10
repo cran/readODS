@@ -1,3 +1,15 @@
+# readODS 2.3.4
+
+* Matches `readxl` parameters
+* Adds progress bar for reading functions
+* Rewritten C++ parts for large files
+* Implements #154
+* Fix #224 "OutDec" option is ignored
+
+# readODS 2.3.3
+
+* Fix #213, prevent error when `set.seed` for `write_ods()`
+
 # readODS 2.3.2
 
 * Fix #207, trim off large or unused test files
