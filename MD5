@@ -1,6 +1,6 @@
-0faf292ab58f902a412d2ded8f90ffdc *DESCRIPTION
+ec0350f0c361c637aa711e338b3fc996 *DESCRIPTION
 d15ba5adbdc6d89956e72e076db6703f *NAMESPACE
-f7ef60fa5c2f5c4b69465d9ced863e0b *NEWS.md
+80506f3cd77d1129a2734d7958d119aa *NEWS.md
 2c31656894a7471fcb70323a1f33d7c2 *R/cpp11.R
 70cfacc899dfc092810ac830bd1e6173 *R/list_ods_sheets.R
 8a854efde5a41ea4a48d79e39002c85a *R/readODS-package.R
@@ -43,7 +43,7 @@ f642456da1794e8f3526ad4353f172e0 *src/readxl/zip.cpp
 dcf5d740512f2789fb95be40513957fc *src/readxl/zip.h
 aae008e759c139120ba1ad5a450e68c8 *src/splice.cpp
 79af88c530e1aef6a6ba7efaf1f1ba64 *src/splice.h
-422d71f53738787bdac0e8e365ee904f *src/write_sheet_file_.cpp
+19fbebb1208bce30fcd3a06cc14b5031 *src/write_sheet_file_.cpp
 9e61cda0ab4d4690e8f9323915182db4 *src/write_sheet_file_.h
 0622a97a2aaa3c342f09636052c2d7f5 *tests/spelling.R
 0774ba3e5458868ebc1915c2b7dcde3f *tests/testdata/1996-2000.ods
