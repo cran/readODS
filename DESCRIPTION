@@ -1,7 +1,7 @@
 Package: readODS
 Type: Package
 Title: Read and Write ODS Files
-Version: 2.3.5
+Version: 2.3.6
 Authors@R: 
     c(person("Gerrit-Jan", "Schutten", role = c("aut"), email = "phonixor@gmail.com"),
     person("Chung-hong", "Chan", role = c("aut", "cre"), email = "chainsawtiney@gmail.com", comment = c(ORCID = "0000-0002-6232-7530")),
@@ -29,7 +29,7 @@ Imports: cellranger, minty (>= 0.0.5), stringi, tibble, vctrs (>=
         0.4.2), zip, tools, withr
 LinkingTo: cpp11 (>= 0.5.0)
 Suggests: spelling, testthat, datasets, covr, knitr, rmarkdown, readr
-        (>= 1.2.1)
+        (>= 1.2.1), desc
 License: GPL-3
 RoxygenNote: 7.3.2
 Encoding: UTF-8
@@ -37,7 +37,7 @@ VignetteBuilder: knitr
 Depends: R (>= 4.1)
 Language: en-GB
 NeedsCompilation: yes
-Packaged: 2026-04-12 19:08:12 UTC; chainsawriot
+Packaged: 2026-09-01 19:49:29 UTC; chainsawriot
 Author: Gerrit-Jan Schutten [aut],
   Chung-hong Chan [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-6232-7530>),
@@ -59,4 +59,4 @@ Author: Gerrit-Jan Schutten [aut],
   Marcin Kalicinski [ctb, cph] (Author of included RapidXML code)
 Maintainer: Chung-hong Chan <chainsawtiney@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-04-13 07:30:10 UTC
+Date/Publication: 2026-09-02 05:20:13 UTC
